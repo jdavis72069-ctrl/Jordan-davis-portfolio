@@ -1,0 +1,27 @@
+# PROJECT: All-In-One UMAC Module (Zumbach)
+# One project card. Everything above the blank line is a setting. Everything below it is the description.
+#
+# Title: the project name shown as the heading of the card.
+Title: All-In-One UMAC Module
+#
+# Subtitle: a small handwritten line under the title. Leave empty to hide.
+Subtitle: Electronics fixture
+#
+# Images: picture paths, separated by COMMAS. The first picture is the main one; extra pictures can be clicked to view in a gallery.
+#   Example: Images/Projects/UMACAllinOne1.png, Images/Projects/UMACAllinOne2.png
+#   Leave empty to show a decorative star doodle instead of a picture.
+Images: Images/Projects/UMACAllinOne1.png, Images/Projects/UMACAllinOne2.png
+#
+# Image Alt: a short description of the picture, for screen readers.
+Image Alt: All-in-one electronics fixture for the Zumbach UMAC CI measuring system
+#
+# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+Skills: SolidWorks, Design Iteration, Heat Transfer, Part Selection
+#
+# Link: optional web link for the project (for example, a link to a write-up). Leave empty to hide.
+Link:
+
+# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
+Invented a for-purchase electronics fixture for the Zumbach UMAC CI ultrasonic measuring system and its accompanying display and sensors.
+
+Created engineering models and design-for-manufacturing (DFM) drawings in SolidWorks, produced thorough documentation and bills of materials (BOMs), and presented progress at weekly engineering meetings.

@@ -1,0 +1,30 @@
+# ZUMBACH GROUP (internship at Zumbach Electronics AG)
+# This file describes one organization. It shows a logo badge, then the project cards inside it.
+#
+# Name: the organization name. If there is no Logo, this name is shown as a handwritten badge instead.
+Name: Zumbach Electronics AG
+#
+# Logo: path to the logo picture. Leave empty to show the Name instead.
+Logo: Images/Logos and Decals/Zumbach Electronics Logo.png
+#
+# Logo Backdrop: "light" puts the logo on a light rounded badge (use this for dark logos).
+#   "none" shows the logo as it is (use this for white logos). Leave it as "light" for this one.
+Logo Backdrop: light
+#
+# Role: Jordan's job title(s) at this organization. Separate multiple roles with " · ".
+Role: Developmental Engineering Intern · Mechanical Engineering Intern
+#
+# Dates: when she worked there. Leave empty to hide.
+Dates: Summer 2024 · Summer 2026
+#
+# Location: city and state. Leave empty to hide.
+Location: Mount Kisco, NY
+#
+# Layout: "cards" shows projects side by side as cards (image on top, text under).
+#   "rows" shows projects as rows (image on the left, text on the right). Use "cards" or "rows" only.
+Layout: cards
+
+# BELOW THE BLANK LINE: the project files for this group, ONE PER LINE, in display order.
+# Paths are relative to the content/projects/ folder.
+zumbach/umac-all-in-one.txt
+zumbach/umac-show-case.txt

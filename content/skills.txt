@@ -1,0 +1,59 @@
+# SKILLS SECTION
+# This section shows Jordan's skills as bulleted lists in columns, grouped by category.
+#
+# The FIRST block (before the first "---") holds the heading and intro only.
+# Heading: the title of this section.
+Heading: Skills
+#
+# Intro: one short sentence shown under the heading. Leave empty to hide it.
+Intro: Tools and skills Jordan uses across CAD, analysis, fabrication and programming.
+
+---
+
+# ONE BLOCK PER CATEGORY. Each block has:
+#   Category: the name of the group (shown as a heading in the list).
+#   Then a blank line, then one "- " bullet per skill.
+# To add a skill, add a new line starting with "- ". To add a category, copy a whole block and separate it with "---".
+# To hide a category, add the line "Show: no" under its Category line.
+Category: CAD & Modeling
+
+- SolidWorks
+- Onshape
+- Fusion360
+
+---
+
+Category: Analysis & Simulation
+
+- Finite element analysis (FEA)
+- Computational fluid dynamics (CFD) with Ansys Fluent
+- GD&T (geometric dimensioning and tolerancing)
+- Hand calculations
+
+---
+
+Category: Fabrication & Lab
+
+- Machining (lathe and mill)
+- Hand soldering and circuit assembly
+- 3D printing
+- Prototyping
+
+---
+
+Category: Software & Programming
+
+- Ansys Fluent
+- MATLAB
+- C and C++
+- Python
+- Microsoft Office
+
+---
+
+Category: Languages & Communication
+
+- Public speaking
+- Digital illustration
+- French (proficient)
+- Greek (beginner)

@@ -1,0 +1,30 @@
+# HIGH SCHOOL GROUP
+# This file describes a group of projects with no logo. Its Name is shown as a handwritten badge.
+#
+# Name: the group name shown at the top of this section.
+Name: High School Projects
+#
+# Logo: leave empty, since high school projects don't have a logo. The Name above will be used instead.
+Logo:
+#
+# Logo Backdrop: not needed when there is no logo. Leave it as "none".
+Logo Backdrop: none
+#
+# Role: Jordan's role on these projects.
+Role: Project Manager
+#
+# Dates: leave empty to hide. (Add a year range here if you want it shown.)
+Dates:
+#
+# Location: leave empty to hide.
+Location:
+#
+# Layout: "cards" shows projects side by side as cards (image on top, text under).
+#   Use "cards" or "rows" only.
+Layout: cards
+
+# BELOW THE BLANK LINE: the project files for this group, ONE PER LINE, in display order.
+# Paths are relative to the content/projects/ folder.
+high-school/plant-watering.txt
+high-school/wind-power.txt
+high-school/hydraulic-claw.txt

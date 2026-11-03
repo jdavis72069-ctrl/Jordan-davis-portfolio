@@ -1,0 +1,53 @@
+# ART SECTION
+# This section shows pieces of art as "pinned sketches" (framed, slightly tilted).
+#
+# Heading: the title of this section.
+Heading: Art
+#
+# Intro: one short sentence shown under the heading. Leave empty to hide it.
+Intro: Jordan's digital illustration brings the same eye for function, aesthetics, and simplicity to her engineering design.
+
+---
+
+# ONE BLOCK PER ARTWORK. Blocks are separated by a line containing only three dashes (---).
+#
+# HOW TO ADD A PICTURE:
+#   1. On GitHub, open the Images folder, then the Art folder (create it if it isn't there).
+#   2. Click "Add file" > "Upload files", drop in your picture, and click "Commit changes".
+#   3. Type the path to that picture after "Image:" below, for example: Images/Art/sunset-study.jpg
+#   If you leave "Image:" empty, a star doodle frame is shown instead.
+#
+# Image: the path to the artwork picture (see above). Leave empty for a placeholder.
+Image:
+#
+# Title: the name of the piece. Currently shows "Artwork coming soon" as a placeholder.
+Title: Artwork coming soon
+#
+# Medium: what it was made with, for example "Digital illustration". Leave empty to hide.
+Medium:
+#
+# Year: the year it was made, for example "2025". Leave empty to hide.
+Year:
+
+# Optional: a short caption. Type it below the blank line above. Leave blank to hide it.
+
+---
+
+# HOW TO ADD MORE PIECES: copy everything from the first "---" line down to the next "---" line,
+# paste it at the end of this file, and fill in the new Image, Title, Medium and Year.
+
+Image:
+Title: Artwork coming soon
+Medium:
+Year:
+
+# Optional: a short caption (below the blank line above).
+
+---
+
+Image:
+Title: Artwork coming soon
+Medium:
+Year:
+
+# Optional: a short caption (below the blank line above).

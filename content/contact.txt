@@ -1,0 +1,22 @@
+# CONTACT SECTION
+# The last section of the page. It shows an email link and optional links.
+#
+# Heading: the title of this section.
+Heading: Contact
+#
+# Email: the email address. It becomes a clickable link on the website.
+Email: jordan.davis@yale.edu
+#
+# LinkedIn: the full web address of Jordan's LinkedIn profile, for example https://www.linkedin.com/in/yourname
+#   FILL THIS IN: copy the link from LinkedIn (on the profile page, click "Edit public profile & URL" or copy the address bar),
+#   paste it after "LinkedIn:" below. Leave it empty to hide the LinkedIn button.
+LinkedIn:
+#
+# Resume: optional link to a PDF of the resume. To add it:
+#   1. Upload the PDF to the repository (on GitHub, click "Add file" > "Upload files" in the main folder, or in a Documents folder).
+#   2. Type its path here, for example: Documents/Jordan-Davis-Resume.pdf
+#   Leave it empty to hide the resume button.
+Resume:
+
+# BELOW THE BLANK LINE: one friendly line inviting people to get in touch.
+Interested in engineering roles or collaborations? Jordan would love to hear from you.

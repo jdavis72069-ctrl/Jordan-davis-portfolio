@@ -1,0 +1,26 @@
+# PROJECT: Miniature Mars Rover (Yale, MENG185 class)
+# One project row. Everything above the blank line is a setting. Everything below it is the description.
+#
+# Title: the project name shown as the heading.
+Title: Miniature Mars Rover
+#
+# Subtitle: a small handwritten line under the title. Leave empty to hide.
+Subtitle: MENG185 · Team of Three
+#
+# Images: picture paths, separated by COMMAS. The first picture is the main one; extra pictures can be clicked to view in a gallery.
+#   Leave empty to show a decorative star doodle instead of a picture.
+Images: Images/Projects/miniRover.png
+#
+# Image Alt: a short description of the picture, for screen readers.
+Image Alt: Miniature Mars rover built for the MENG185 class competition
+#
+# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+Skills: CAD Modeling, Prototyping, Soldering
+#
+# Link: optional web link for the project. Leave empty to hide.
+Link:
+
+# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
+Jordan worked with a team of three to design a miniature rover that can obtain and retain soil moisture data. The team tied for 2nd place in the class competition, judged by NASA-affiliated judges.
+
+Jordan created the exterior CAD model and drawings, designed and tested the protective outer shell, and helped teammates with soldering and assembly.

@@ -1,0 +1,19 @@
+# SITE SETTINGS
+# This file controls the big text at the top of the website and the footer.
+# Only edit the text AFTER the colon (the word before the colon is a label the site needs, so leave it as is).
+# Keep each line on one line. Don't delete a label, even if you leave its value empty.
+#
+# Name: the big name at the top of the page. Two words will show on two lines.
+Name: Jordan Davis
+#
+# Tagline: the short sentence under the name.
+Tagline: Mechanical engineer and visual artist, focused on fluids, aerospace and ocean systems.
+#
+# Subtitle: the small line under the tagline (school, year, etc.).
+Subtitle: Mechanical Engineering · Yale University · Class of 2027
+#
+# Location: shown on the contact area. Leave empty to hide it.
+Location: Larchmont, NY (open to relocation or remote work)
+#
+# Footer: the small line at the very bottom of every page.
+Footer: Designed with stars in mind · © 2026 Jordan Davis

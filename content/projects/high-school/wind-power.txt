@@ -1,0 +1,26 @@
+# PROJECT: Wind Power Generator (High School)
+# One project card. Everything above the blank line is a setting. Everything below it is the description.
+#
+# Title: the project name shown as the heading.
+Title: Wind Power Generator
+#
+# Subtitle: a small handwritten line under the title. Leave empty to hide.
+Subtitle: Project Manager · 1st place, most efficient design
+#
+# Images: picture paths, separated by COMMAS. The first picture is the main one; extra pictures can be clicked to view in a gallery.
+#   Leave empty to show a decorative star doodle instead of a picture.
+Images: Images/Projects/WindPower.png
+#
+# Image Alt: a short description of the picture, for screen readers.
+Image Alt: Pinwheel-style wind power generator prototype
+#
+# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+Skills: CAD Modeling, Prototyping, Wood Fabrication
+#
+# Link: optional web link for the project. Leave empty to hide.
+Link:
+
+# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
+Jordan managed a project to build a device that harvests wind energy. She created a pinwheel-style design, and the device came in first place for most efficient design.
+
+She produced CAD models of the design and fabricated prototypes using wood.

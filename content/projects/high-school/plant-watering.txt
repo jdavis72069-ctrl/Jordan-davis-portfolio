@@ -1,0 +1,24 @@
+# PROJECT: Plant-Watering Device (High School)
+# One project card. Everything above the blank line is a setting. Everything below it is the description.
+#
+# Title: the project name shown as the heading.
+Title: Plant-Watering Device
+#
+# Subtitle: a small handwritten line under the title. Leave empty to hide.
+Subtitle: Soil-moisture sensing · Project Manager
+#
+# Images: picture paths, separated by COMMAS. This project has no picture yet, so the field is empty and a star doodle is shown.
+#   To add a picture: upload it to the Images/Projects folder on GitHub (see HOW-TO-EDIT.txt), then type its path here.
+Images:
+#
+# Image Alt: a short description of the picture, for screen readers. Fill in when you add a picture.
+Image Alt:
+#
+# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+Skills: Fusion360, CAD Modeling
+#
+# Link: optional web link for the project. Leave empty to hide.
+Link:
+
+# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
+Jordan managed a soil-moisture sensing device that waters plants. She designed a wave-inspired, natural look for the device, then used Fusion360 to model it and produce drawings.

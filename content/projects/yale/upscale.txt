@@ -1,0 +1,29 @@
+# PROJECT: Upscale Wheelchair Scale (Yale, project co-lead)
+# One project row. Everything above the blank line is a setting. Everything below it is the description.
+#
+# Title: the project name shown as the heading.
+Title: Upscale Wheelchair Scale
+#
+# Subtitle: a small handwritten line under the title. Leave empty to hide.
+Subtitle: Project Co-Lead · Fall 2025–Spring 2026
+#
+# Images: picture paths, separated by COMMAS. This project has no picture yet, so the field is empty and a star doodle is shown.
+#   To add a picture: upload it to the Images/Projects folder on GitHub (see HOW-TO-EDIT.txt), then type its path here.
+Images:
+#
+# Image Alt: a short description of the picture, for screen readers. Fill in when you add a picture.
+Image Alt:
+#
+# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+Skills: Onshape, FEA, Hand Calculations, 3D Printing
+#
+# Link: optional web link for the project. Leave empty to hide.
+Link:
+
+# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
+Jordan co-led a project to increase the accessibility of wheelchair scales, designing and producing 3D-printable ramps with Onshape.
+
+- Designed and produced the ramps in Onshape.
+- Performed mechanical and structural analyses through hand calculations and FEA simulations.
+- Mentored team members through CAD and static analysis workshops.
+- Aided in fabrication and testing of prototypes, and recorded project documentation.

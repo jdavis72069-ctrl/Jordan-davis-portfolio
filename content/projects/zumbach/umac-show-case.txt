@@ -1,0 +1,26 @@
+# PROJECT: UMAC Show Case (Zumbach)
+# One project card. Everything above the blank line is a setting. Everything below it is the description.
+#
+# Title: the project name shown as the heading of the card.
+Title: UMAC Show Case
+#
+# Subtitle: a small handwritten line under the title. Leave empty to hide.
+Subtitle: Trade show exhibition fixture
+#
+# Images: picture paths, separated by COMMAS. The first picture is the main one; extra pictures can be clicked to view in a gallery.
+#   Leave empty to show a decorative star doodle instead of a picture.
+Images: Images/Projects/UMACCase1.png, Images/Projects/UMACCase2.png
+#
+# Image Alt: a short description of the picture, for screen readers.
+Image Alt: UMAC CI exhibition case with monitor mount and custom electronics padding
+#
+# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+Skills: SolidWorks, Design Iteration, Heat Transfer, Drafting, Part Selection
+#
+# Link: optional web link for the project. Leave empty to hide.
+Link:
+
+# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
+Designed a carrying case configuration for the Zumbach UMAC CI ultrasonic precision measuring system, so it could be presented at shows.
+
+Created a usable exhibition fixture with a monitor mount and custom electronics padding that makes the UMAC easy to transport and set up.

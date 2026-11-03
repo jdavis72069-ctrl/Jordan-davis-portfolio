@@ -1,0 +1,33 @@
+# YALE GROUP (Yale University coursework, capstone and teams)
+# This file describes one organization. It shows a logo badge, then the projects inside it.
+#
+# Name: the organization name. If there is no Logo, this name is shown as a handwritten badge instead.
+Name: Yale University
+#
+# Logo: path to the logo picture. Leave empty to show the Name instead.
+Logo: Images/Logos and Decals/Yale Logo.png
+#
+# Logo Backdrop: "light" puts the logo on a light rounded badge (use this for dark logos).
+#   "none" shows the logo as it is (use this for white logos). This logo is white, so it stays "none".
+Logo Backdrop: none
+#
+# Role: the degree or role shown under the name.
+Role: B.S. Mechanical Engineering
+#
+# Dates: when she is/was at Yale. Leave empty to hide.
+Dates: 2023 – 2027
+#
+# Location: city and state. Leave empty to hide.
+Location: New Haven, CT
+#
+# Layout: "rows" shows projects with the image on the left and text on the right.
+#   Use "cards" or "rows" only.
+Layout: rows
+
+# BELOW THE BLANK LINE: the project files for this group, ONE PER LINE, in display order.
+# Paths are relative to the content/projects/ folder.
+yale/manta-ray-robot.txt
+yale/competition-rover.txt
+yale/upscale.txt
+yale/mini-mars-rover.txt
+yale/forklift.txt

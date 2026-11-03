@@ -1,0 +1,23 @@
+# ABOUT SECTION
+# This is the "About" part of the page, with the photo on the left and text on the right.
+#
+# Heading: the title of this section. Change "About" if you like.
+Heading: About
+#
+# Photo: the path to the picture. To swap it, upload a new picture to the Images/Logos and Decals folder
+#   and type its full path here, for example: Images/Logos and Decals/newphoto.jpg
+#   Paths are case-sensitive, so capital letters must match exactly.
+Photo: Images/Logos and Decals/profilepic.jpg
+#
+# Photo Alt: a short description of the photo for people using screen readers. Keep it short and descriptive.
+Photo Alt: Photo of Jordan Davis
+
+# The text below the blank line is the About text.
+# Each paragraph is separated by a blank line. Start a line with "- " to make a bullet point.
+# A line starting with # (like this one) is a note and will NOT show on the website.
+
+Jordan Davis is a senior at Yale studying Mechanical Engineering, with a passion for fluid analysis and product optimization in aerospace and oceanographic applications.
+
+As a visual artist, she brings a unique design perspective that balances functionality, aesthetic considerations, and simplicity. She has over seven years of experience in project management, CAD modeling, fabrication, and iterative design.
+
+Her experience spans CAD modeling and documentation, CFD and FEA simulation, data acquisition and sensor integration, and hands-on hardware development with machining tools and electronics. She expects to earn her B.S. in Mechanical Engineering (ABET) from Yale in May 2027.

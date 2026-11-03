@@ -1,0 +1,24 @@
+# PROJECT: Hydraulic Claw Arm (High School)
+# One project card. Everything above the blank line is a setting. Everything below it is the description.
+#
+# Title: the project name shown as the heading.
+Title: Hydraulic Claw Arm
+#
+# Subtitle: a small handwritten line under the title. Leave empty to hide.
+Subtitle: Project Manager
+#
+# Images: picture paths, separated by COMMAS. The first picture is the main one; extra pictures can be clicked to view in a gallery.
+#   Leave empty to show a decorative star doodle instead of a picture.
+Images: Images/Projects/HydraulicArm.png
+#
+# Image Alt: a short description of the picture, for screen readers.
+Image Alt: Hydraulically powered claw arm prototype
+#
+# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+Skills: Fusion360, Prototyping, Mechanism Design
+#
+# Link: optional web link for the project. Leave empty to hide.
+Link:
+
+# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
+Jordan managed a hydraulically powered claw system. She invented the gear and grabbing mechanism, used Fusion360 to design the gearbox, and fabricated and iterated on prototypes.

@@ -1,0 +1,123 @@
+HOW TO UPDATE THIS WEBSITE
+(a friendly guide for anyone who has never coded)
+
+You do not need to install anything or know any programming. Every word on the site lives in a plain text file inside the "content" folder. Change a file, save it on GitHub, and the website updates on its own.
+
+
+1. FIND THE FILE YOU WANT TO CHANGE
+
+   - Go to the repository on github.com (the page that lists the "content" and "Images" folders).
+   - Click the "content" folder.
+   - Click a file, for example "about.txt". Each file controls one part of the site:
+       site.txt          the name, tagline, and footer at the top and bottom
+       about.txt         the About section and its photo
+       projects.txt      the Projects section heading and the list of groups
+       projects/         one file per group (zumbach.txt, scripps.txt, yale.txt, high-school.txt)
+                         and a folder per group holding the individual projects
+       art.txt           the Art section (the pinned sketches)
+       skills.txt        the Skills section
+       reading.txt       the "Currently Reading" section
+       contact.txt       the Contact section
+
+
+2. EDIT A FILE
+
+   - Click the file, then click the small PENCIL icon (top right of the file view).
+   - Make your change. Only change the words, not the labels before the colons.
+   - Scroll down to the green "Commit changes" button and click it.
+   - In the box that pops up, you can leave the message as it is, then click "Commit changes" again.
+
+
+3. WAIT A MOMENT, THEN REFRESH
+
+   - The website usually updates within a minute or a few minutes.
+   - Refresh the page in your browser. If you still see the old text, wait a little longer and refresh again.
+
+
+4. THE FORMAT RULES (this is the only "code" you need to know)
+
+   - Lines that look like "Label: value" set a single piece of text.
+       Example:   Title: Deep-Sea Bioacoustics Housing
+     Keep the label and the colon exactly as they are. Only change the value after the colon.
+
+   - A BLANK LINE separates the top settings from the main text (the "body") below them.
+     Keep the blank line! It is what tells the site where the settings end.
+
+   - In the body, a blank line starts a new paragraph.
+
+   - A line that starts with a dash and a space ("- ") becomes a bullet point.
+       Example:   - Designed a housing for a Raspberry Pi module
+
+   - Words wrapped in two stars become bold:   **like this**
+
+   - A link can be written as:   [text you see](https://example.com)
+
+   - A line that starts with a hash sign (#) is a NOTE for editors. It never appears on the website.
+     The notes in each file explain what every line does, so read them before you change something.
+
+   - Some files hold several items. They are separated by a line that contains only three dashes:   ---
+     Copy a whole block (from one --- to the next) to add another item, and paste it where you want it.
+
+   - For a list in the settings (such as Images or Skills), separate the items with commas:
+       Skills: SolidWorks, Onshape, Fusion360
+
+
+5. ADD OR REPLACE A PICTURE
+
+   - On the repository page, click the "Images" folder, then the folder for the picture type:
+       Images/Projects   for project pictures
+       Images/Art        for artwork (create this folder if it isn't there)
+       Images/Logos and Decals   for logos and the profile photo
+   - Click "Add file" > "Upload files", drop your picture in, and click "Commit changes".
+   - Then go to the file that uses the picture (for example, a project file) and type its path
+     in the matching line. The path is the folder names plus the file name, separated by slashes:
+       Images/Projects/MyNewPicture.png
+   - To REPLACE a picture, upload the new one with the same file name, or type the new name in the file.
+   - Pictures can be JPG, PNG, or WEBP. Smaller files load faster; a width of about 1600 pixels is plenty.
+
+
+6. ADD A NEW PROJECT
+
+   a. Make the project file: in the matching group folder (for example, content/projects/yale/),
+      click "Add file" > "Create new file". Name it something short with no spaces, like "robot-arm.txt".
+      Copy the layout from another project file in the same folder, then fill in its Title, Subtitle,
+      Images, Skills, and description.
+   b. Add it to its group: open the group file (for example, content/projects/yale.txt) and add a new
+      line under the list, with the folder and file name, like:   yale/robot-arm.txt
+      The order of the lines is the order they appear on the site.
+
+
+7. REORDER OR HIDE THINGS
+
+   - To change the order, move the lines up or down in the list (in a group file or projects.txt).
+   - To HIDE something without deleting it, add the line   Show: no   under its settings.
+     For example, in reading.txt, changing "Show: yes" to "Show: no" hides the whole Currently Reading section.
+   - To hide a project, you can also remove its line from its group file.
+
+
+8. ADD AN ART PIECE
+
+   - Upload the artwork picture to Images/Art (see step 5).
+   - Open art.txt. Copy one block (from one --- line to the next).
+   - Paste it at the end, then fill in:
+       Image:   the picture path, for example Images/Art/sunset-study.jpg
+       Title:   the name of the piece
+       Medium:  what it was made with (for example, Digital illustration)
+       Year:    the year it was made
+   - Optionally, type a short caption below the blank line in that block.
+
+
+9. IF SOMETHING LOOKS BROKEN
+
+   Check these first:
+   [ ] File and folder names are spelled exactly right, including capital letters.
+       "Images/Projects/UMACCase1.png" is not the same as "images/projects/umaccase1.png".
+   [ ] Every label keeps its colon, for example "Title:" (not "Title" or "Title -").
+   [ ] There is still a blank line between the settings and the body text.
+   [ ] A picture path matches the uploaded picture's name exactly, including the file extension (.png, .jpg).
+   [ ] Blocks in art.txt and skills.txt are separated by a line with exactly three dashes: ---
+   [ ] You didn't accidentally delete a whole label line. If a label is empty, leave it as "Label:" with nothing after it.
+   [ ] No line of body text starts with a hash sign (#) unless you want it hidden, since hash lines are notes.
+
+   Still stuck? Open the file on GitHub and click "History" to see its earlier versions. Every change is
+   saved, so you can always look back at what the file said before.

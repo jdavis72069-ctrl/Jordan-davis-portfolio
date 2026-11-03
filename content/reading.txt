@@ -1,0 +1,25 @@
+# CURRENTLY READING SECTION
+# This small section shows a book Jordan is reading, with a short note. It is shown next to a book cover.
+#
+# Show: yes means this section is shown on the website.
+#   Change it to "Show: no" to hide the whole section (nothing else needs to change).
+Show: yes
+#
+# Heading: the title of this section.
+Heading: Currently Reading
+#
+# Title: the book's title, for example "The Name of the Book". Leave empty to hide the title (the section will still show).
+Title:
+#
+# Author: the author's name. Leave empty to hide it.
+Author:
+#
+# Cover: optional picture of the book cover. To add one, upload the image to the Images folder on GitHub
+#   (for example Images/Logos and Decals, or create a new "Images/Books" folder), then type its full path here,
+#   for example: Images/Books/cover.jpg
+#   Leave empty to show a decorative star doodle instead.
+Cover:
+
+# BELOW THE BLANK LINE: Jordan's short note about the book (one or two sentences is ideal).
+# Leave everything below the blank line empty to hide the note.
+# Example: "A few thoughts on what's keeping me up at night these days."

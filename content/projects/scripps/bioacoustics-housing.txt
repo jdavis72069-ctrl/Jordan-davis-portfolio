@@ -1,0 +1,32 @@
+# PROJECT: Deep-Sea Bioacoustics Housing (Scripps)
+# One project row. Everything above the blank line is a setting. Everything below it is the description.
+#
+# Title: the project name shown as the heading.
+Title: Deep-Sea Bioacoustics Housing
+#
+# Subtitle: a small handwritten line under the title. Leave empty to hide.
+Subtitle: Raspberry Pi hardware module · Summer 2025
+#
+# Images: picture paths, separated by COMMAS. The first picture is the main one; extra pictures can be clicked to view in a gallery.
+#   Leave empty to show a decorative star doodle instead of a picture.
+Images: Images/Projects/ScrippsPiModule-web.jpg, Images/Projects/ScrippsPresentationPhoto-web.jpg
+#
+# Image Alt: a short description of the picture, for screen readers.
+Image Alt: Raspberry Pi housing module for deep-sea bioacoustics research
+#
+# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+Skills: SolidWorks, 3D Printing, MATLAB, Prototyping
+#
+# Link: optional web link for the project. Leave empty to hide.
+Link:
+
+# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
+Jordan designed a housing for a Raspberry Pi hardware module used in deep-sea bioacoustics research. She independently developed a mount that meets the rigid criteria of mooring deployment, then iterated on configurations with a multidisciplinary team.
+
+The final prototype was fabricated with a quantitative size reduction compared to previous models, and she presented the project outcomes to a technical audience.
+
+- Produced technical drawings, models, and integrated assemblies in SolidWorks.
+- Selected mechanical and electronic hardware and created the bill of materials (BOM).
+- Assembled and soldered test circuitry, and built prototypes with 3D printing.
+- Took part in a rapid design and prototyping challenge to design and fabricate an aquatic drogue.
+- Wrote a MATLAB script that converted timestamped acoustic data into visual waveforms, to aid bioacoustic identification and data analysis.

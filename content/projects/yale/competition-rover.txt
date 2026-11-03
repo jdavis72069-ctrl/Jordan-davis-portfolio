@@ -1,0 +1,29 @@
+# PROJECT: Yale Rover (Yale, University Rover Challenge team)
+# One project row. Everything above the blank line is a setting. Everything below it is the description.
+#
+# Title: the project name shown as the heading.
+Title: Yale Rover (University Rover Challenge)
+#
+# Subtitle: a small handwritten line under the title. Leave empty to hide.
+Subtitle: Team Member · Fall 2024–Spring 2025, Spring 2026
+#
+# Images: picture paths, separated by COMMAS. This project has no picture yet, so the field is empty and a star doodle is shown.
+#   To add a picture: upload it to the Images/Projects folder on GitHub (see HOW-TO-EDIT.txt), then type its path here.
+Images:
+#
+# Image Alt: a short description of the picture, for screen readers. Fill in when you add a picture.
+Image Alt:
+#
+# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+Skills: Onshape, Machining, Structural Calculations
+#
+# Link: optional web link for the project. Leave empty to hide.
+Link:
+
+# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
+Jordan is a member of the drive sub-team building a rover for the University Rover Challenge.
+
+- Designed electronic and battery housings to maximize chassis space and organization, and assisted with chassis assembly.
+- Developed motor mounts in Onshape.
+- Helped machine aluminum components on the lathe and mill, contributing to hands-on assembly and troubleshooting.
+- Performed structural calculations to determine suspension fastener selection, and researched rocker-bogie suspension systems to select the best mechanism.
