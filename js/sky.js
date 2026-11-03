@@ -9,42 +9,56 @@
   var ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  var reduceMQ = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+  var reduceMQ = window.matchMedia
+    ? window.matchMedia('(prefers-reduced-motion: reduce)')
+    : { matches: false };
   var fineMQ = window.matchMedia ? window.matchMedia('(pointer: fine)') : { matches: false };
 
   var COLORS = ['#DDEFFA', '#CED9F5'];
   // per depth layer: scroll speed, cursor travel (px), radius range, alpha range
   var LAYERS = [
-    { scroll: 0.05, cursor: 4,  r: [0.4, 0.8], a: [0.35, 0.65] },
-    { scroll: 0.12, cursor: 9,  r: [0.7, 1.2], a: [0.5, 0.85] },
-    { scroll: 0.2,  cursor: 16, r: [1.1, 1.8], a: [0.65, 1.0] }
+    { scroll: 0.05, cursor: 4, r: [0.4, 0.8], a: [0.35, 0.65] },
+    { scroll: 0.12, cursor: 9, r: [0.7, 1.2], a: [0.5, 0.85] },
+    { scroll: 0.2, cursor: 16, r: [1.1, 1.8], a: [0.65, 1.0] },
   ];
 
-  var W = 0, H = 0, dpr = 1;
+  var W = 0,
+    H = 0,
+    dpr = 1;
   var stars = [];
   var shooters = [];
   var nextShoot = 0;
-  var mx = 0, my = 0, tx = 0, ty = 0; // smoothed / target cursor offsets (-1..1)
-  var running = false, rafId = 0, last = 0, clock = 0;
+  var mx = 0,
+    my = 0,
+    tx = 0,
+    ty = 0; // smoothed / target cursor offsets (-1..1)
+  var running = false,
+    rafId = 0,
+    last = 0,
+    clock = 0;
   var resizeTimer = 0;
   var lastW = 0;
 
-  function rand(a, b) { return a + Math.random() * (b - a); }
+  function rand(a, b) {
+    return a + Math.random() * (b - a);
+  }
 
   function buildStars() {
     var count = Math.round(Math.min(220, Math.max(120, (W * H) / 9000)));
     stars = [];
     for (var i = 0; i < count; i++) {
-      var d = i % 10 < 5 ? 0 : (i % 10 < 8 ? 1 : 2); // more far stars than near
+      var d = i % 10 < 5 ? 0 : i % 10 < 8 ? 1 : 2; // more far stars than near
       var L = LAYERS[d];
       stars.push({
-        nx: Math.random(), ny: Math.random(), d: d,
+        nx: Math.random(),
+        ny: Math.random(),
+        d: d,
         r: rand(L.r[0], L.r[1]),
         a: rand(L.a[0], L.a[1]),
         c: COLORS[Math.random() < 0.55 ? 0 : 1],
         ph: rand(0, Math.PI * 2),
         sp: rand(0.4, 1.3),
-        tw: Math.random() < 0.75 ? rand(0.25, 0.6) : 0.1 // some stars barely twinkle
+        tw: Math.random() < 0.75 ? rand(0.25, 0.6) : 0.1, // some stars barely twinkle
       });
     }
   }
@@ -66,15 +80,18 @@
     resizeTimer = setTimeout(resize, 160);
   }
 
-  function wrap(v, m) { return ((v % m) + m) % m; }
+  function wrap(v, m) {
+    return ((v % m) + m) % m;
+  }
 
   function drawStars(t, animated) {
     var sy = window.pageYOffset || 0;
     for (var i = 0; i < stars.length; i++) {
-      var s = stars[i], L = LAYERS[s.d];
+      var s = stars[i],
+        L = LAYERS[s.d];
       var x = s.nx * W + (animated ? mx * L.cursor : 0);
       var y = wrap(s.ny * H - sy * L.scroll + (animated ? my * L.cursor : 0), H);
-      var al = s.a * (animated ? (1 - s.tw + s.tw * (0.5 + 0.5 * Math.sin(t * s.sp + s.ph))) : 1);
+      var al = s.a * (animated ? 1 - s.tw + s.tw * (0.5 + 0.5 * Math.sin(t * s.sp + s.ph)) : 1);
       ctx.globalAlpha = al;
       ctx.fillStyle = s.c;
       if (s.r < 1) {
@@ -83,7 +100,8 @@
         ctx.beginPath();
         ctx.arc(x, y, s.r, 0, 6.2832);
         ctx.fill();
-        if (s.d === 2) { // soft halo on the nearest stars
+        if (s.d === 2) {
+          // soft halo on the nearest stars
           ctx.globalAlpha = al * 0.14;
           ctx.beginPath();
           ctx.arc(x, y, s.r * 3.2, 0, 6.2832);
@@ -102,7 +120,9 @@
       y: rand(0.02, 0.4) * H,
       vx: Math.cos(ang) * dir * rand(520, 780),
       vy: Math.sin(ang) * rand(520, 780),
-      life: 0, max: rand(1.0, 1.5), len: rand(90, 160)
+      life: 0,
+      max: rand(1.0, 1.5),
+      len: rand(90, 160),
     });
   }
 
@@ -113,7 +133,10 @@
       s.x += s.vx * dt;
       s.y += s.vy * dt;
       var p = s.life / s.max;
-      if (p >= 1) { shooters.splice(i, 1); continue; }
+      if (p >= 1) {
+        shooters.splice(i, 1);
+        continue;
+      }
       var fade = p < 0.15 ? p / 0.15 : 1 - (p - 0.15) / 0.85;
       var sp = Math.sqrt(s.vx * s.vx + s.vy * s.vy);
       var tx2 = s.x - (s.vx / sp) * s.len;
@@ -186,16 +209,21 @@
 
   window.addEventListener('resize', onResize, { passive: true });
   document.addEventListener('visibilitychange', function () {
-    if (document.hidden) stop(); else start();
+    if (document.hidden) stop();
+    else start();
   });
   if (reduceMQ.addEventListener) reduceMQ.addEventListener('change', applyMotionPref);
   else if (reduceMQ.addListener) reduceMQ.addListener(applyMotionPref);
 
-  window.addEventListener('pointermove', function (e) {
-    if (!fineMQ.matches || e.pointerType === 'touch') return;
-    tx = (e.clientX / W - 0.5) * 2;
-    ty = (e.clientY / H - 0.5) * 2;
-  }, { passive: true });
+  window.addEventListener(
+    'pointermove',
+    function (e) {
+      if (!fineMQ.matches || e.pointerType === 'touch') return;
+      tx = (e.clientX / W - 0.5) * 2;
+      ty = (e.clientY / H - 0.5) * 2;
+    },
+    { passive: true },
+  );
 
   resize();
   applyMotionPref();
