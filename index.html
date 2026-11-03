@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jordan Davis | Portfolio</title>
+  <meta name="description" content="Jordan Davis is a Yale mechanical engineering student and visual artist focused on fluid and thermal analysis, aerospace and ocean systems.">
+  <meta name="theme-color" content="#090F57">
+  <meta name="color-scheme" content="dark">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jordan Davis | Portfolio">
+  <meta property="og:description" content="Mechanical engineer and visual artist, focused on fluids, aerospace and ocean systems.">
+  <meta property="og:image" content="Images/Logos%20and%20Decals/profilepic.jpg">
+  <meta name="twitter:card" content="summary">
+
+  <!-- Favicon: a lavender hand-drawn star, inline so there is nothing extra to host -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24.5 3.6L29.4 17.4L43.3 17.5L32.4 26.3L35.5 40.6L23.7 32.8L12.5 39.8L15.6 26.9L4.7 18.1L18.7 16.9Z' fill='%23CED9F5' stroke='%23CED9F5' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/motion.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Shared hand-drawn star, reused everywhere with <use href="#star-doodle"> -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="star-doodle" viewBox="0 0 48 48">
+      <path d="M24.5 3.6L29.4 17.4L43.3 17.5L32.4 26.3L35.5 40.6L23.7 32.8L12.5 39.8L15.6 26.9L4.7 18.1L18.7 16.9L24.2 4.3"/>
+    </symbol>
+  </svg>
+
+  <!-- Night sky (drawn by js/sky.js) -->
+  <canvas id="sky" class="sky" aria-hidden="true"></canvas>
+
+  <div class="page">
+
+    <nav class="topnav" id="topnav" aria-label="Primary">
+      <div class="topnav__inner">
+        <a class="topnav__brand" href="#top" aria-label="Jordan Davis, back to top">
+          <svg class="topnav__star" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+          <span>JD</span>
+        </a>
+        <button class="topnav__toggle" type="button" aria-expanded="false" aria-controls="topnav-links">
+          <span class="topnav__toggle-label">Menu</span>
+          <span class="topnav__bars" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <ul class="topnav__links" id="topnav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#art">Art</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#reading">Reading</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <header class="hero" id="top">
+      <!-- Orbit rings: centre is (0,0). Rotation is done in CSS (css/motion.css). -->
+      <div class="hero__orbits" aria-hidden="true">
+        <svg viewBox="-300 -300 600 600" aria-hidden="true" focusable="false">
+          <g class="orbit orbit--1">
+            <circle class="ring" cx="0" cy="0" r="60" stroke-dasharray="3 7"/>
+            <circle class="orbit-core" cx="0" cy="0" r="6"/>
+          </g>
+          <g class="orbit orbit--2">
+            <circle class="ring" cx="0" cy="0" r="110"/>
+            <circle class="orbit-planet" cx="110" cy="0" r="5"/>
+          </g>
+          <g class="orbit orbit--3">
+            <circle class="ring" cx="0" cy="0" r="170" stroke-dasharray="10 8"/>
+            <circle class="orbit-planet" cx="170" cy="0" r="7"/>
+          </g>
+          <g class="orbit orbit--4">
+            <circle class="ring" cx="0" cy="0" r="230"/>
+          </g>
+          <g class="orbit orbit--5">
+            <circle class="ring" cx="0" cy="0" r="290"/>
+            <circle class="orbit-planet" cx="290" cy="0" r="4"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Scattered doodle stars, top-left -->
+      <svg class="doodle-star" style="--s:44px; top:16%; left:7%" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+      <svg class="doodle-star" style="--s:26px; top:27%; left:15%" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+      <svg class="doodle-star" style="--s:34px; top:10%; left:24%" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+      <svg class="doodle-star" style="--s:22px; bottom:20%; right:10%" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+
+      <div class="hero__content">
+        <h1 class="hero__name" data-split><span class="hero__line">JORDAN</span><span class="hero__line">DAVIS</span></h1>
+        <p class="hero__tagline"></p>
+        <p class="hero__subtitle"></p>
+      </div>
+
+      <a class="hero__cue" href="#about" aria-label="Scroll down to About">
+        <span>scroll</span>
+        <svg viewBox="0 0 24 40" aria-hidden="true"><path d="M12 2 C11 12 13 20 12 34 M5 27 C8 30 10 33 12 36 C14 33 17 30 19 27"/></svg>
+      </a>
+    </header>
+
+    <main id="main">
+
+      <!-- Shown until content has loaded -->
+      <div class="loader" id="loader" role="status">
+        <svg class="loader__star" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+        <span class="visually-hidden">Loading</span>
+      </div>
+
+      <section id="about" class="section" aria-labelledby="about-title">
+        <div class="wrap">
+          <div class="about">
+            <figure class="about__photo" data-reveal="left"></figure>
+            <div class="about__text" data-reveal="right">
+              <h2 class="section__title" id="about-title" data-draw>About</h2>
+              <div class="prose"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section section--projects" aria-labelledby="projects-title">
+        <div class="projects__grid-bg" aria-hidden="true"></div>
+        <div class="wrap">
+          <header class="section__head">
+            <h2 class="section__title section__title--xl" id="projects-title" data-draw>Projects</h2>
+            <p class="section__intro"></p>
+          </header>
+          <div class="groups"></div>
+        </div>
+      </section>
+
+      <section id="art" class="section" aria-labelledby="art-title">
+        <svg class="doodle-star" style="--s:40px; top:9%; right:8%" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+        <svg class="doodle-star" style="--s:24px; top:34%; left:4%" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+        <div class="wrap">
+          <header class="section__head">
+            <h2 class="section__title section__title--xl" id="art-title" data-draw>Art</h2>
+            <p class="section__intro"></p>
+          </header>
+          <div class="art-grid"></div>
+        </div>
+      </section>
+
+      <section id="skills" class="section section--center" aria-labelledby="skills-title">
+        <svg class="doodle-star" style="--s:36px; top:10%; left:10%" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+        <svg class="doodle-star" style="--s:28px; bottom:12%; right:9%" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+        <div class="wrap">
+          <header class="section__head section__head--center">
+            <h2 class="section__title section__title--xl" id="skills-title" data-draw>Skills</h2>
+            <p class="section__intro"></p>
+          </header>
+          <div class="skills-grid"></div>
+        </div>
+      </section>
+
+      <section id="reading" class="section" aria-labelledby="reading-title">
+        <svg class="doodle-star" style="--s:32px; top:12%; right:12%" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+        <svg class="doodle-star" style="--s:20px; bottom:14%; left:8%" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+        <div class="wrap">
+          <div class="reading">
+            <div class="reading__book" data-reveal="pop"></div>
+            <div class="reading__text" data-reveal="up">
+              <h2 class="section__title" id="reading-title" data-draw>Currently reading</h2>
+              <p class="reading__meta"></p>
+              <div class="prose"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section section--center section--contact" aria-labelledby="contact-title">
+        <svg class="doodle-star" style="--s:46px; top:14%; left:12%" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+        <svg class="doodle-star" style="--s:30px; top:24%; right:14%" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+        <svg class="doodle-star" style="--s:22px; bottom:20%; left:22%" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+        <svg class="doodle-star" style="--s:38px; bottom:12%; right:18%" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle"/></svg>
+        <div class="wrap">
+          <div class="contact" data-reveal="up">
+            <h2 class="section__title section__title--xl" id="contact-title" data-draw>Contact</h2>
+            <div class="prose contact__invite"></div>
+            <a class="contact__email" href="#contact"></a>
+            <ul class="contact__links"></ul>
+            <p class="contact__location"></p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <p class="footer__text"></p>
+    </footer>
+  </div>
+
+  <script src="js/content.js" defer></script>
+  <script src="js/sky.js" defer></script>
+  <script src="js/motion.js" defer></script>
+</body>
+</html>

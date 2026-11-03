@@ -5,7 +5,7 @@
 Name: Yale University
 #
 # Logo: path to the logo picture. Leave empty to show the Name instead.
-Logo: Images/Logos and Decals/Yale Logo.png
+Logo: Images/Logos and Decals/Yale Logo (cropped).png
 #
 # Logo Backdrop: "light" puts the logo on a light rounded badge (use this for dark logos).
 #   "none" shows the logo as it is (use this for white logos). This logo is white, so it stays "none".
