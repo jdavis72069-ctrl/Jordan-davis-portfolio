@@ -17,8 +17,8 @@ Photo Alt: Photo of Jordan Davis
 # Each paragraph is separated by a blank line. Start a line with "- " to make a bullet point.
 # A line starting with # (like this one) is a note and will NOT show on the website.
 
-I'm a senior at Yale studying Mechanical Engineering. I'm most drawn to fluid analysis and product optimization, especially where they meet aerospace and ocean systems.
+Jordan Davis is a senior at Yale studying Mechanical Engineering. She has been captivated by the final frontiers of outer space and the deep ocean since a young age. She has a strong passion for fluid analysis and product design with aerospace and oceanographic applications. 
 
-I also make art, and it shapes how I design. I look for the point where a part works well, looks clean, and stays simple to build. Over seven years of project management, CAD modeling, fabrication and iterative design have given me a steady habit of building, testing and revising.
+Her perspective as a visual artist equips her with a distinctive design approach that balances aestheticism and functionality through a creative problem-solving lens. 
 
-My hands-on work runs from CAD modeling and documentation to CFD and FEA simulation, data acquisition and sensor integration, and building hardware with machining tools and electronics. I expect to finish my B.S. in Mechanical Engineering (ABET) at Yale in May 2027.
+She brings over seven years of CAD modeling experience and a strong fabrication background in 3D printing, machining, prototyping, and circuit assembly. She expects to finish her B.S. in Mechanical Engineering (ABET) at Yale in May 2027. 
