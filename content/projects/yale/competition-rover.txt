@@ -1,29 +1,49 @@
-# PROJECT: Yale Rover (Yale, University Rover Challenge team)
-# One project row. Everything above the blank line is a setting. Everything below it is the description.
+# PROJECT: Yale Rover (Yale Rover team, University Rover Challenge)
+# One project: its home-page card and its own page. The settings above the blank line control both.
+# The text below the blank line is the full write-up on the project's page.
+#   "## " at the start of a line makes a small heading. "- " makes a bullet. A blank line starts a new paragraph.
+# Images: the photo shows the whole team's rover, not only the part I worked on. Describe it that way.
 #
-# Title: the project name shown as the heading.
+# Title: the project name.
 Title: Yale Rover (University Rover Challenge)
 #
 # Subtitle: a small handwritten line under the title. Leave empty to hide.
-Subtitle: Team Member · Fall 2024–Spring 2025, Spring 2026
+Subtitle: Drives sub-team member
 #
-# Images: picture paths, separated by COMMAS. This project has no picture yet, so the field is empty and a star doodle is shown.
-#   To add a picture: upload it to the Images/Projects folder on GitHub (see HOW-TO-EDIT.txt), then type its path here.
-Images:
+# Summary: one or two sentences for the home-page card. Leave empty to use the first paragraph of the write-up.
+Summary: I worked on the drives sub-team of the Yale Rover team, building a rover for the University Rover Challenge. My work covered the chassis, the electronics and battery housing, the motor mounts and the suspension.
 #
-# Image Alt: a short description of the picture, for screen readers. Fill in when you add a picture.
-Image Alt:
+# Role, Team and When: optional. When is empty, the group's dates are shown.
+Role: Drives sub-team
+Team: Yale Rover team
+When: Fall 2024 – Spring 2025, Spring 2026
 #
-# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+# Images: picture paths, separated by COMMAS. The first picture is the cover. Leave empty for a star doodle.
+Images: Images/Projects/YaleRover-chassis.jpg
+#
+# Image Alt: a short description of the picture, for screen readers.
+Image Alt: The Yale Rover team's rover during assembly, showing the chassis and rocker-bogie suspension
+#
+# Captions: one per picture, in the same order, separated by " | ". Leave empty for no captions.
+Captions: The rover's chassis and rocker-bogie suspension during assembly
+#
+# Skills: small tags, separated by COMMAS.
 Skills: Onshape, Machining, Structural Calculations
 #
-# Link: optional web link for the project. Leave empty to hide.
+# Link and Link Label: optional web link and its button text. Leave Link empty to hide the button.
 Link:
+Link Label:
 
-# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
-Jordan is a member of the drive sub-team building a rover for the University Rover Challenge.
+## The challenge
+The Yale Rover team builds a rover for the University Rover Challenge. The drives sub-team is responsible for the parts that move the rover, so the chassis, the body and the suspension all had to fit together.
 
-- Designed electronic and battery housings to maximize chassis space and organization, and assisted with chassis assembly.
-- Developed motor mounts in Onshape.
-- Helped machine aluminum components on the lathe and mill, contributing to hands-on assembly and troubleshooting.
-- Performed structural calculations to determine suspension fastener selection, and researched rocker-bogie suspension systems to select the best mechanism.
+## What I did
+- Designed the electronics and battery housings to make the best use of chassis space and keep everything organized.
+- Helped assemble the chassis.
+- Developed the motor mounts in Onshape.
+- Machined aluminum components on the lathe and mill, which helped with hands-on assembly and troubleshooting.
+- Performed the structural calculations that determined the suspension fastener selection.
+- Researched rocker-bogie suspension systems to choose the best mechanism.
+
+## Working on fit
+Much of the work came down to fit. Every housing and mount had to leave room for the rest of the chassis. Machining some of the aluminum parts myself made it easier to troubleshoot during assembly.

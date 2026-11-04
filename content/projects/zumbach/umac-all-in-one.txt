@@ -1,27 +1,46 @@
 # PROJECT: All-In-One UMAC Module (Zumbach)
-# One project card. Everything above the blank line is a setting. Everything below it is the description.
+# One project: its home-page card and its own page. The settings above the blank line control both.
+# The text below the blank line is the full write-up on the project's page.
+#   "## " at the start of a line makes a small heading. "- " makes a bullet. A blank line starts a new paragraph.
 #
-# Title: the project name shown as the heading of the card.
+# Summary: one or two sentences for the home-page card. Keep it short.
 Title: All-In-One UMAC Module
 #
 # Subtitle: a small handwritten line under the title. Leave empty to hide.
 Subtitle: Electronics fixture
 #
-# Images: picture paths, separated by COMMAS. The first picture is the main one; extra pictures can be clicked to view in a gallery.
-#   Example: Images/Projects/UMACAllinOne1.png, Images/Projects/UMACAllinOne2.png
-#   Leave empty to show a decorative star doodle instead of a picture.
+# Summary: one or two sentences for the home-page card. Leave empty to use the first paragraph of the write-up.
+Summary: I invented a for-purchase electronics fixture for the UMAC CI ultrasonic measuring system, along with its display and sensors. I built the engineering models and drawings for it in SolidWorks.
+#
+# Role and Team: optional. When is empty, the group's dates are shown.
+Role: Design & CAD
+Team:
+When:
+#
+# Images: picture paths, separated by COMMAS. The first picture is the cover. Leave empty for a star doodle.
 Images: Images/Projects/UMACAllinOne1.png, Images/Projects/UMACAllinOne2.png
 #
 # Image Alt: a short description of the picture, for screen readers.
 Image Alt: All-in-one electronics fixture for the Zumbach UMAC CI measuring system
 #
-# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+# Captions: one per picture, in the same order, separated by " | ". Leave empty for no captions.
+Captions: CAD render of the fixture with its display | A second angle showing the vented side
+#
+# Skills: small tags, separated by COMMAS.
 Skills: SolidWorks, Design Iteration, Heat Transfer, Part Selection
 #
-# Link: optional web link for the project (for example, a link to a write-up). Leave empty to hide.
+# Link and Link Label: optional web link and its button text. Leave Link empty to hide the button.
 Link:
+Link Label:
 
-# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
-Invented a for-purchase electronics fixture for the Zumbach UMAC CI ultrasonic measuring system and its accompanying display and sensors.
+## The challenge
+The UMAC CI is an ultrasonic measuring system, and its display and sensors needed a dedicated fixture. Because the fixture was a product people could buy, it had to be easy to set up and make sense on its own.
 
-Created engineering models and design-for-manufacturing (DFM) drawings in SolidWorks, produced thorough documentation and bills of materials (BOMs), and presented progress at weekly engineering meetings.
+## What I did
+- Designed the fixture as a for-purchase product for the UMAC CI and its accompanying display and sensors.
+- Built engineering models in SolidWorks and turned them into design-for-manufacturing (DFM) drawings.
+- Wrote thorough documentation and bills of materials (BOMs), so the design could be built and ordered.
+- Created several prototypes to check how the parts fit together.
+
+## Keeping the team in the loop
+I presented my progress at the weekly engineering meetings. Those meetings kept the design moving and gave everyone a clear view of where it stood.

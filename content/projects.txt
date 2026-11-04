@@ -4,8 +4,8 @@
 Heading: Projects
 #
 # Intro: one short sentence shown under the heading. Leave empty to hide it.
-Intro: Engineering work from internships, Yale coursework and clubs, and high school, grouped by organization.
-
+Intro: Here is some of my engineering work, from internships and Yale coursework to clubs and high school, grouped by organization. Select a project to read its full story.
+#
 # BELOW THE BLANK LINE: the list of group files, ONE PER LINE, in the order you want them shown on the site.
 # Each name must match a file inside the content/projects/ folder.
 # To hide a group without deleting it, remove its line from this list (or set "Show: no" in the group file).

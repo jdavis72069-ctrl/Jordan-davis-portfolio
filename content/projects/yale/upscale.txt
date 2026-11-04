@@ -1,29 +1,47 @@
 # PROJECT: Upscale Wheelchair Scale (Yale, project co-lead)
-# One project row. Everything above the blank line is a setting. Everything below it is the description.
+# One project: its home-page card and its own page. The settings above the blank line control both.
+# The text below the blank line is the full write-up on the project's page.
+#   "## " at the start of a line makes a small heading. "- " makes a bullet. A blank line starts a new paragraph.
+# This project has no picture yet, so Images is empty and a star doodle is shown. Add a picture path when you have one.
 #
-# Title: the project name shown as the heading.
+# Title: the project name.
 Title: Upscale Wheelchair Scale
 #
 # Subtitle: a small handwritten line under the title. Leave empty to hide.
-Subtitle: Project Co-Lead · Fall 2025–Spring 2026
+Subtitle: Project co-lead
 #
-# Images: picture paths, separated by COMMAS. This project has no picture yet, so the field is empty and a star doodle is shown.
-#   To add a picture: upload it to the Images/Projects folder on GitHub (see HOW-TO-EDIT.txt), then type its path here.
+# Summary: one or two sentences for the home-page card. Leave empty to use the first paragraph of the write-up.
+Summary: As co-lead of Upscale, I designed 3D-printable ramps in Onshape to make wheelchair scales more accessible. I also ran the structural analyses and mentored teammates through CAD and static analysis workshops.
+#
+# Role, Team and When: optional. When is empty, the group's dates are shown.
+Role: Co-lead · CAD & analysis
+Team:
+When: Fall 2025 – Spring 2026
+#
+# Images: picture paths, separated by COMMAS. Leave empty for a star doodle.
 Images:
 #
 # Image Alt: a short description of the picture, for screen readers. Fill in when you add a picture.
 Image Alt:
 #
-# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+# Captions: one per picture, in the same order, separated by " | ". Leave empty for no captions.
+Captions:
+#
+# Skills: small tags, separated by COMMAS.
 Skills: Onshape, FEA, Hand Calculations, 3D Printing
 #
-# Link: optional web link for the project. Leave empty to hide.
+# Link and Link Label: optional web link and its button text. Leave Link empty to hide the button.
 Link:
+Link Label:
 
-# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
-Jordan co-led a project to increase the accessibility of wheelchair scales, designing and producing 3D-printable ramps with Onshape.
+## The challenge
+A wheelchair scale only helps if a wheelchair can get onto it. Our project focused on ramps that make the scale more accessible, and we checked their strength through analysis and testing.
 
-- Designed and produced the ramps in Onshape.
+## What I did
+- Designed and produced the 3D-printable ramps in Onshape.
 - Performed mechanical and structural analyses through hand calculations and FEA simulations.
 - Mentored team members through CAD and static analysis workshops.
-- Aided in fabrication and testing of prototypes, and recorded project documentation.
+- Aided in the fabrication and testing of prototypes, and recorded project documentation.
+
+## What I learned
+Co-leading meant teaching as well as designing. Running the workshops made me explain my analysis clearly enough for others to follow and repeat it, which sharpened how I explain my own work.

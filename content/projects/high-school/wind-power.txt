@@ -1,26 +1,46 @@
 # PROJECT: Wind Power Generator (High School)
-# One project card. Everything above the blank line is a setting. Everything below it is the description.
+# One project: its home-page card and its own page. The settings above the blank line control both.
+# The text below the blank line is the full write-up on the project's page.
+#   "## " at the start of a line makes a small heading. "- " makes a bullet. A blank line starts a new paragraph.
 #
-# Title: the project name shown as the heading.
+# Title: the project name.
 Title: Wind Power Generator
 #
 # Subtitle: a small handwritten line under the title. Leave empty to hide.
 Subtitle: Project Manager · 1st place, most efficient design
 #
-# Images: picture paths, separated by COMMAS. The first picture is the main one; extra pictures can be clicked to view in a gallery.
-#   Leave empty to show a decorative star doodle instead of a picture.
+# Summary: one or two sentences for the home-page card. Leave empty to use the first paragraph of the write-up.
+Summary: As project manager, I led a device that harvests wind energy, and it came in first place for most efficient design. I created its pinwheel-style design, produced the CAD models and fabricated the prototypes from wood.
+#
+# Role, Team and When: optional. Leave empty to hide them.
+Role: Project manager & design
+Team:
+When:
+#
+# Images: picture paths, separated by COMMAS. The first picture is the cover. Leave empty for a star doodle.
 Images: Images/Projects/WindPower.png
 #
 # Image Alt: a short description of the picture, for screen readers.
 Image Alt: Pinwheel-style wind power generator prototype
 #
-# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+# Captions: one per picture, in the same order, separated by " | ". Leave empty for no captions.
+Captions: The pinwheel-style design on its base
+#
+# Skills: small tags, separated by COMMAS.
 Skills: CAD Modeling, Prototyping, Wood Fabrication
 #
-# Link: optional web link for the project. Leave empty to hide.
+# Link and Link Label: optional web link and its button text. Leave Link empty to hide the button.
 Link:
+Link Label:
 
-# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
-Jordan managed a project to build a device that harvests wind energy. She created a pinwheel-style design, and the device came in first place for most efficient design.
+## The challenge
+The project was a device that harvests wind energy. Efficiency was the measure that mattered, and the design had to turn wind into power as effectively as possible.
 
-She produced CAD models of the design and fabricated prototypes using wood.
+## What I did
+- Managed the project as project manager.
+- Created the pinwheel-style design.
+- Produced CAD models of the design.
+- Fabricated prototypes from wood.
+
+## What I learned
+Moving from CAD models to wooden prototypes showed me how a drawing and a physical build can differ. I now check my models against the real parts as early as I can.

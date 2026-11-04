@@ -1,29 +1,46 @@
-# PROJECT: Forklift Assistive Eating and Drinking Device (Yale, Y-AID Prosthetics Club)
-# One project row. Everything above the blank line is a setting. Everything below it is the description.
+# PROJECT: Forklift Assistive Eating and Drinking Device (Y-AID Prosthetics Club, Yale)
+# One project: its home-page card and its own page. The settings above the blank line control both.
+# The text below the blank line is the full write-up on the project's page.
+#   "## " at the start of a line makes a small heading. "- " makes a bullet. A blank line starts a new paragraph.
 #
-# Title: the project name shown as the heading.
+# Title: the project name.
 Title: Forklift Assistive Eating and Drinking Device
 #
 # Subtitle: a small handwritten line under the title. Leave empty to hide.
-Subtitle: Y-AID Prosthetics Club · Project Lead
+Subtitle: Y-AID Prosthetics Club · Project lead
 #
-# Images: picture paths, separated by COMMAS. The first picture is the main one; extra pictures can be clicked to view in a gallery.
-#   Leave empty to show a decorative star doodle instead of a picture.
+# Summary: one or two sentences for the home-page card. Leave empty to use the first paragraph of the write-up.
+Summary: As project lead with the Y-AID Prosthetics Club, I managed a team designing a 3D-printable device that helps a client eat and drink. I kept the client involved, organized in-person testing and refined the design after each round.
+#
+# Role, Team and When: optional. When is empty, the group's dates are shown.
+Role: Project lead
+Team: Y-AID Prosthetics Club team
+When:
+#
+# Images: picture paths, separated by COMMAS. The first picture is the cover. Leave empty for a star doodle.
 Images: Images/Projects/Forklift.png
 #
 # Image Alt: a short description of the picture, for screen readers.
 Image Alt: 3D-printed Forklift assistive device for eating and drinking
 #
-# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+# Captions: one per picture, in the same order, separated by " | ". Leave empty for no captions.
+Captions: The 3D-printed device fitted and in use during testing
+#
+# Skills: small tags, separated by COMMAS.
 Skills: 3D Printing, Prototyping, Project Management
 #
-# Link: optional web link for the project. Leave empty to hide.
+# Link and Link Label: optional web link and its button text. Leave Link empty to hide the button.
 Link:
+Link Label:
 
-# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
-Jordan managed a team developing a 3D-printable assistive device to help a client eat and drink.
+## The challenge
+The device had to help a client eat and drink, and it had to be something the club could 3D print. Comfort mattered as much as function, because the device is worn and used by the person it was made for.
 
+## What I did
 - Communicated with the client and organized in-person testing.
-- Improved the initial prototype design to reduce its bulk.
+- Improved the initial prototype to reduce its bulk.
 - Iterated on the connective strap to make it more comfortable for the client.
-- Collaborated with team members on assembly, and documented progress.
+- Collaborated with team members on assembly, and documented our progress.
+
+## What I learned
+Leading this project meant balancing the engineering with the person using it. Testing in person showed me how much a small detail, like the strap, shapes the experience of the person wearing the device.

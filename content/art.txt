@@ -5,7 +5,7 @@
 Heading: Art
 #
 # Intro: one short sentence shown under the heading. Leave empty to hide it.
-Intro: Jordan's digital illustration brings the same eye for function, aesthetics, and simplicity to her engineering design.
+Intro: Digital illustration is where I practice the same eye for function, simplicity and aesthetics that I bring to engineering.
 
 ---
 
@@ -20,8 +20,8 @@ Intro: Jordan's digital illustration brings the same eye for function, aesthetic
 # Image: the path to the artwork picture (see above). Leave empty for a placeholder.
 Image:
 #
-# Title: the name of the piece. Currently shows "Artwork coming soon" as a placeholder.
-Title: Artwork coming soon
+# Title: the name of the piece. Currently shows "Coming soon" as a placeholder.
+Title: Coming soon
 #
 # Medium: what it was made with, for example "Digital illustration". Leave empty to hide.
 Medium:
@@ -37,7 +37,7 @@ Year:
 # paste it at the end of this file, and fill in the new Image, Title, Medium and Year.
 
 Image:
-Title: Artwork coming soon
+Title: Coming soon
 Medium:
 Year:
 
@@ -46,7 +46,7 @@ Year:
 ---
 
 Image:
-Title: Artwork coming soon
+Title: Coming soon
 Medium:
 Year:
 

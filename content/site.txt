@@ -7,13 +7,13 @@
 Name: Jordan Davis
 #
 # Tagline: the short sentence under the name.
-Tagline: Mechanical engineer and visual artist, focused on fluids, aerospace and ocean systems.
+Tagline: I'm a mechanical engineer and visual artist, focused on fluids, aerospace and ocean systems.
 #
 # Subtitle: the small line under the tagline (school, year, etc.).
 Subtitle: Mechanical Engineering · Yale University · Class of 2027
 #
 # Location: shown on the contact area. Leave empty to hide it.
-Location: Larchmont, NY (open to relocation or remote work)
+Location: Larchmont, NY · open to relocating or working remotely
 #
 # Footer: the small line at the very bottom of every page.
 Footer: Designed with stars in mind · © 2026 Jordan Davis

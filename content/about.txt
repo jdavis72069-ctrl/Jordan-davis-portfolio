@@ -1,5 +1,6 @@
 # ABOUT SECTION
 # This is the "About" part of the page, with the photo on the left and text on the right.
+# Write it in first person, as if Jordan is speaking.
 #
 # Heading: the title of this section. Change "About" if you like.
 Heading: About
@@ -16,8 +17,8 @@ Photo Alt: Photo of Jordan Davis
 # Each paragraph is separated by a blank line. Start a line with "- " to make a bullet point.
 # A line starting with # (like this one) is a note and will NOT show on the website.
 
-Jordan Davis is a senior at Yale studying Mechanical Engineering, with a passion for fluid analysis and product optimization in aerospace and oceanographic applications.
+I'm a senior at Yale studying Mechanical Engineering. I'm most drawn to fluid analysis and product optimization, especially where they meet aerospace and ocean systems.
 
-As a visual artist, she brings a unique design perspective that balances functionality, aesthetic considerations, and simplicity. She has over seven years of experience in project management, CAD modeling, fabrication, and iterative design.
+I also make art, and it shapes how I design. I look for the point where a part works well, looks clean, and stays simple to build. Over seven years of project management, CAD modeling, fabrication and iterative design have given me a steady habit of building, testing and revising.
 
-Her experience spans CAD modeling and documentation, CFD and FEA simulation, data acquisition and sensor integration, and hands-on hardware development with machining tools and electronics. She expects to earn her B.S. in Mechanical Engineering (ABET) from Yale in May 2027.
+My hands-on work runs from CAD modeling and documentation to CFD and FEA simulation, data acquisition and sensor integration, and building hardware with machining tools and electronics. I expect to finish my B.S. in Mechanical Engineering (ABET) at Yale in May 2027.

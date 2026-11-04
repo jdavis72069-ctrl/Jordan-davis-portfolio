@@ -20,6 +20,7 @@ Author:
 #   Leave empty to show a decorative star doodle instead.
 Cover:
 
-# BELOW THE BLANK LINE: Jordan's short note about the book (one or two sentences is ideal).
+# BELOW THE BLANK LINE: Jordan's short note about the book, written in first person (one or two sentences is ideal).
 # Leave everything below the blank line empty to hide the note.
-# Example: "A few thoughts on what's keeping me up at night these days."
+# NOTE FOR JORDAN: no book or note was provided yet, so this stays empty. Add a title and a note here when you're ready.
+# Example: "I'm reading this one slowly, a chapter at a time, and taking notes on the parts about fluid flow."

@@ -1,26 +1,46 @@
 # PROJECT: UMAC Show Case (Zumbach)
-# One project card. Everything above the blank line is a setting. Everything below it is the description.
+# One project: its home-page card and its own page. The settings above the blank line control both.
+# The text below the blank line is the full write-up on the project's page.
+#   "## " at the start of a line makes a small heading. "- " makes a bullet. A blank line starts a new paragraph.
 #
-# Title: the project name shown as the heading of the card.
+# Title: the project name.
 Title: UMAC Show Case
 #
 # Subtitle: a small handwritten line under the title. Leave empty to hide.
 Subtitle: Trade show exhibition fixture
 #
-# Images: picture paths, separated by COMMAS. The first picture is the main one; extra pictures can be clicked to view in a gallery.
-#   Leave empty to show a decorative star doodle instead of a picture.
+# Summary: one or two sentences for the home-page card. Leave empty to use the first paragraph of the write-up.
+Summary: I designed a show case for the UMAC CI, built for exhibitions. It has a monitor mount and custom electronics padding, so the system can travel and be set up at shows.
+#
+# Role and Team: optional. When is empty, the group's dates are shown.
+Role: Design & CAD
+Team:
+When:
+#
+# Images: picture paths, separated by COMMAS. The first picture is the cover. Leave empty for a star doodle.
 Images: Images/Projects/UMACCase1.png, Images/Projects/UMACCase2.png
 #
 # Image Alt: a short description of the picture, for screen readers.
 Image Alt: UMAC CI exhibition case with monitor mount and custom electronics padding
 #
-# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+# Captions: one per picture, in the same order, separated by " | ". Leave empty for no captions.
+Captions: CAD model of the open case with the monitor mount and electronics padding | The case open, with the monitor on the lid and the padded tray below
+#
+# Skills: small tags, separated by COMMAS.
 Skills: SolidWorks, Design Iteration, Heat Transfer, Drafting, Part Selection
 #
-# Link: optional web link for the project. Leave empty to hide.
+# Link and Link Label: optional web link and its button text. Leave Link empty to hide the button.
 Link:
+Link Label:
 
-# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
-Designed a carrying case configuration for the Zumbach UMAC CI ultrasonic precision measuring system, so it could be presented at shows.
+## The challenge
+The UMAC CI needed to be shown at trade shows. That meant it had to travel in a case and still be ready to use as soon as it was unpacked.
 
-Created a usable exhibition fixture with a monitor mount and custom electronics padding that makes the UMAC easy to transport and set up.
+## What I did
+- Designed the carrying case configuration for the UMAC CI ultrasonic precision measuring device, so it could be presented at shows.
+- Designed a monitor mount for the display.
+- Designed custom electronics padding to hold the equipment in place during transport.
+- Worked in SolidWorks on the layout and drafting, and revised the design as the parts came together.
+
+## Why the layout matters
+An exhibition piece has to be easy to pack, carry and set up, often by someone who did not build it. I designed the case around the monitor and the padding so the setup stays consistent wherever it travels.

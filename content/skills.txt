@@ -6,7 +6,7 @@
 Heading: Skills
 #
 # Intro: one short sentence shown under the heading. Leave empty to hide it.
-Intro: Tools and skills Jordan uses across CAD, analysis, fabrication and programming.
+Intro: These are the tools I reach for most, across CAD, analysis, fabrication and programming.
 
 ---
 

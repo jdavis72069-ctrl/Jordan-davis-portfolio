@@ -18,5 +18,5 @@ LinkedIn:
 #   Leave it empty to hide the resume button.
 Resume:
 
-# BELOW THE BLANK LINE: one friendly line inviting people to get in touch.
-Interested in engineering roles or collaborations? Jordan would love to hear from you.
+# BELOW THE BLANK LINE: one friendly line in first person inviting people to get in touch.
+Whether you have an engineering role, a collaboration or a question about my projects, I'd love to hear from you.

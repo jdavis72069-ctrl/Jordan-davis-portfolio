@@ -1,24 +1,45 @@
 # PROJECT: Hydraulic Claw Arm (High School)
-# One project card. Everything above the blank line is a setting. Everything below it is the description.
+# One project: its home-page card and its own page. The settings above the blank line control both.
+# The text below the blank line is the full write-up on the project's page.
+#   "## " at the start of a line makes a small heading. "- " makes a bullet. A blank line starts a new paragraph.
 #
-# Title: the project name shown as the heading.
+# Title: the project name.
 Title: Hydraulic Claw Arm
 #
 # Subtitle: a small handwritten line under the title. Leave empty to hide.
 Subtitle: Project Manager
 #
-# Images: picture paths, separated by COMMAS. The first picture is the main one; extra pictures can be clicked to view in a gallery.
-#   Leave empty to show a decorative star doodle instead of a picture.
+# Summary: one or two sentences for the home-page card. Leave empty to use the first paragraph of the write-up.
+Summary: As project manager, I built a hydraulically powered claw. I invented its gear and grabbing mechanism, designed the gearbox in Fusion360, and fabricated and refined the prototypes.
+#
+# Role, Team and When: optional. Leave empty to hide them.
+Role: Project manager & mechanism design
+Team:
+When:
+#
+# Images: picture paths, separated by COMMAS. The first picture is the cover. Leave empty for a star doodle.
 Images: Images/Projects/HydraulicArm.png
 #
 # Image Alt: a short description of the picture, for screen readers.
 Image Alt: Hydraulically powered claw arm prototype
 #
-# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+# Captions: one per picture, in the same order, separated by " | ". Leave empty for no captions.
+Captions: The claw arm prototype on the workbench
+#
+# Skills: small tags, separated by COMMAS.
 Skills: Fusion360, Prototyping, Mechanism Design
 #
-# Link: optional web link for the project. Leave empty to hide.
+# Link and Link Label: optional web link and its button text. Leave Link empty to hide the button.
 Link:
+Link Label:
 
-# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
-Jordan managed a hydraulically powered claw system. She invented the gear and grabbing mechanism, used Fusion360 to design the gearbox, and fabricated and iterated on prototypes.
+## The challenge
+The project was a claw arm powered by hydraulics, and I was responsible for taking it from an idea to a working prototype.
+
+## What I did
+- Invented the gear and grabbing mechanism.
+- Designed the gearbox in Fusion360.
+- Fabricated the prototypes and refined them after each round.
+
+## What I learned
+As the project manager, I had to keep the whole build in view while working on one part at a time. The gears, the grabbing mechanism and the hydraulics all had to work together.

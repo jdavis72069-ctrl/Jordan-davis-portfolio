@@ -48,17 +48,22 @@ You do not need to install anything or know any programming. Every word on the s
    - A line that starts with a dash and a space ("- ") becomes a bullet point.
        Example:   - Designed a housing for a Raspberry Pi module
 
+   - A line that starts with two hash signs and a space ("## ") becomes a small heading inside a project's
+     write-up. Use it to break a long story into short sections.
+       Example:   ## What I did
+
    - Words wrapped in two stars become bold:   **like this**
 
    - A link can be written as:   [text you see](https://example.com)
 
-   - A line that starts with a hash sign (#) is a NOTE for editors. It never appears on the website.
+   - A line that starts with ONE hash sign (#) is a NOTE for editors. It never appears on the website.
      The notes in each file explain what every line does, so read them before you change something.
 
    - Some files hold several items. They are separated by a line that contains only three dashes:   ---
      Copy a whole block (from one --- to the next) to add another item, and paste it where you want it.
 
-   - For a list in the settings (such as Images or Skills), separate the items with commas:
+   - For a list in the settings (such as Images, Skills or Captions), separate the items with commas,
+     except Captions, which are separated by a bar with a space on each side:   " | "
        Skills: SolidWorks, Onshape, Fusion360
 
 
@@ -76,18 +81,52 @@ You do not need to install anything or know any programming. Every word on the s
    - Pictures can be JPG, PNG, or WEBP. Smaller files load faster; a width of about 1600 pixels is plenty.
 
 
-6. ADD A NEW PROJECT
+6. PROJECTS: EACH ONE HAS ITS OWN PAGE
+
+   Every project has two views:
+     - A CARD on the home page. It shows the Title, Subtitle, Summary, a picture, and tags, followed by a
+       "Read the full story" link.
+     - Its OWN PAGE, with the full write-up, a gallery of all its pictures, and a short "At a glance" box.
+       The address of that page is built from the project's folder and file name, for example:
+       project.html?p=yale/manta-ray-robot
+       You don't need to type that address anywhere. The "Read the full story" link takes visitors there.
+
+   The settings at the top of a project file (above the blank line) are:
+
+     Title:      the project name.
+     Subtitle:   a short handwritten line under the title, such as "Senior design capstone · Group 1".
+     Summary:    one or two sentences shown on the home-page card. Write it as if you are speaking
+                 about the project yourself. If you leave it empty, the first paragraph of the write-up is used.
+     Role:       your role, such as "Mechanics · CAD". Optional. It appears in the "At a glance" box.
+     Team:       the size or names of the team, such as "Team of four". Optional.
+     When:       the dates, such as "Fall 2026 – Spring 2027". Optional. If empty, the group's dates are used.
+     Images:     the picture paths, separated by commas. The first picture is the cover on the home page.
+     Image Alt:  a short description of the picture, for people using screen readers.
+     Captions:   one caption per picture, in the same order as the pictures, separated by " | ".
+                 Example:   Captions: Front view of the glider | Side profile showing the wings
+     Skills:     the tags, separated by commas.
+     Link:       an optional web address, such as a team website. Leave it empty to hide the button.
+     Link Label: the words on that button, such as "Visit the pitch site". Optional.
+
+   Below the blank line is the full write-up (the body). Use short paragraphs, "- " bullets, and "## "
+   headings. The home-page card does NOT show this text; only the project's own page does.
+
+   Hiding a project: add the line   Show: no   in its settings, or remove its line from its group file.
+
+
+7. ADD A NEW PROJECT
 
    a. Make the project file: in the matching group folder (for example, content/projects/yale/),
       click "Add file" > "Create new file". Name it something short with no spaces, like "robot-arm.txt".
-      Copy the layout from another project file in the same folder, then fill in its Title, Subtitle,
-      Images, Skills, and description.
+      Copy the layout from another project file in the same folder, then fill in its settings
+      (Title, Subtitle, Summary, Images, Captions, Skills) and write the body.
    b. Add it to its group: open the group file (for example, content/projects/yale.txt) and add a new
       line under the list, with the folder and file name, like:   yale/robot-arm.txt
       The order of the lines is the order they appear on the site.
+   c. That's it. The project's card and its own page are created automatically from the new file.
 
 
-7. REORDER OR HIDE THINGS
+8. REORDER OR HIDE THINGS
 
    - To change the order, move the lines up or down in the list (in a group file or projects.txt).
    - To HIDE something without deleting it, add the line   Show: no   under its settings.
@@ -95,7 +134,7 @@ You do not need to install anything or know any programming. Every word on the s
    - To hide a project, you can also remove its line from its group file.
 
 
-8. ADD AN ART PIECE
+9. ADD AN ART PIECE
 
    - Upload the artwork picture to Images/Art (see step 5).
    - Open art.txt. Copy one block (from one --- line to the next).
@@ -107,7 +146,7 @@ You do not need to install anything or know any programming. Every word on the s
    - Optionally, type a short caption below the blank line in that block.
 
 
-9. IF SOMETHING LOOKS BROKEN
+10. IF SOMETHING LOOKS BROKEN
 
    Check these first:
    [ ] File and folder names are spelled exactly right, including capital letters.
@@ -115,9 +154,12 @@ You do not need to install anything or know any programming. Every word on the s
    [ ] Every label keeps its colon, for example "Title:" (not "Title" or "Title -").
    [ ] There is still a blank line between the settings and the body text.
    [ ] A picture path matches the uploaded picture's name exactly, including the file extension (.png, .jpg).
+   [ ] The number of captions matches the number of pictures, and they are separated by " | ".
    [ ] Blocks in art.txt and skills.txt are separated by a line with exactly three dashes: ---
    [ ] You didn't accidentally delete a whole label line. If a label is empty, leave it as "Label:" with nothing after it.
-   [ ] No line of body text starts with a hash sign (#) unless you want it hidden, since hash lines are notes.
+   [ ] No line of body text starts with a single hash sign (#) unless you want it hidden, since single-hash lines are notes.
+       Two hash signs and a space ("## ") are headings and are fine.
+   [ ] A new project's file name is listed in its group file, with the folder name in front of it.
 
    Still stuck? Open the file on GitHub and click "History" to see its earlier versions. Every change is
    saved, so you can always look back at what the file said before.

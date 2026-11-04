@@ -1,25 +1,67 @@
-# PROJECT: Manta Ray Robot (Yale, capstone)
-# One project row. Everything above the blank line is a setting. Everything below it is the description.
+# PROJECT: DIVA, manta ray underwater glider (Yale MENG 4137L senior design capstone, Group 1)
+# One project: its home-page card and its own page. The settings above the blank line control both.
+# The text below the blank line is the full write-up on the project's page.
+#   "## " at the start of a line makes a small heading. "- " makes a bullet. A blank line starts a new paragraph.
 #
-# Title: the project name shown as the heading.
-Title: Manta Ray Robot (DIVA Capstone)
+# Title: the project name. DIVA = Deepwater Investigation & Visual Analysis.
+Title: DIVA · Manta Ray Underwater Glider
 #
 # Subtitle: a small handwritten line under the title. Leave empty to hide.
-Subtitle: Capstone · Fall 2026
+Subtitle: Senior design capstone · Group 1
 #
-# Images: picture paths, separated by COMMAS. This project has no picture yet, so the field is empty and a star doodle is shown.
-#   To add a picture: upload it to the Images/Projects folder on GitHub (see HOW-TO-EDIT.txt), then type its path here,
-#   for example: Images/Projects/MantaRay.png
-Images:
+# Summary: one or two sentences for the home-page card. Leave empty to use the first paragraph of the write-up.
+Summary: I'm on the mechanics and CAD side of DIVA, a manta-ray-inspired underwater glider that flies on buoyancy instead of propellers. I design its exterior structures and use Ansys Fluent to optimize the hull.
 #
-# Image Alt: a short description of the picture, for screen readers. Fill in when you add a picture.
-Image Alt:
+# Role, Team and When: optional. When is empty, the group's dates are shown.
+Role: Mechanics · CAD
+Team: Group 1, team of four
+When: Fall 2026 – Spring 2027
 #
-# Skills: small tags shown under the text, separated by COMMAS. Leave empty to hide.
+# Images: picture paths, separated by COMMAS. The first picture is the cover.
+# These three images are renders from our team's interactive 3D pitch site.
+Images: Images/Projects/DIVA-front.jpg, Images/Projects/DIVA-side.jpg, Images/Projects/DIVA-exploded.jpg
+#
+# Image Alt: a short description of the picture, for screen readers.
+Image Alt: Renders of the DIVA manta ray underwater glider: front view, side profile and exploded view
+#
+# Captions: one per picture, in the same order, separated by " | ". Leave empty for no captions.
+Captions: Front view of the glider | Side profile showing the wings | Exploded view: shell, wing servos, electronics tray and hull
+#
+# Skills: small tags, separated by COMMAS.
 Skills: SolidWorks, Ansys Fluent, Hydrodynamics
 #
-# Link: optional web link for the project. Leave empty to hide.
+# Link: the team's pitch site link can go here once it is ready. Leave empty to hide the button.
 Link:
+# Link Label: the words on the button.
+Link Label: Visit the pitch site
 
-# BELOW THE BLANK LINE: the description. A blank line starts a new paragraph. A line starting with "- " is a bullet.
-Jordan researches and designs the exterior structures of a biomechanics-inspired robot. She performs structural and hydrodynamic calculations, applies aerodynamic principles and Ansys Fluent to optimize the hull design, and uses SolidWorks to produce technical models and drawings.
+## The idea
+DIVA (Deepwater Investigation & Visual Analysis) is a manta-ray-inspired underwater glider that flies on buoyancy instead of propellers. Our team built it as a senior design capstone. The motivation is simple: according to the US National Ocean Service, 75% of the seafloor is still unmapped, and most underwater vehicles spend much of their energy fighting drag with propellers.
+
+## How it moves
+An internal ballast engine makes DIVA heavier so it sinks, or lighter so it rises. The hydrofoil hull turns that vertical motion into a forward glide, so the vehicle travels in a sawtooth pattern with no propellers in cruise. That pattern uses far less energy than propulsion.
+
+## My part
+Our team of four split the work by discipline. Murat Khidoyatov covers mechatronics and controls, Nowyshin Mridula handles manufacturing, and Chloe DeJoy works on soft robotics and controls. I'm on mechanics and CAD, where I:
+
+- Research and design the exterior structures of the glider.
+- Perform structural and hydrodynamic calculations.
+- Apply aerodynamic principles and Ansys Fluent to optimize the hull.
+- Build the SolidWorks models and technical drawings.
+
+Our team also compared materials for the dorsal canopy, weighing rigid printed PLA and resin against waterjet aluminum.
+
+## The plan
+The schedule runs from Fall 2026 to Spring 2027:
+
+- Fall: requirements, a decision matrix, and CAD and fluid simulation.
+- December: detail drawings, fin molds and a manufacturing plan.
+- January: hull fabrication, assembly and leak tests.
+- February: electronics and control loop integration, and a first pool test.
+- March: tuning the trim and fin waves, and reconciling simulation with pool data.
+- April to May: final validation, demo videos and the report.
+
+## Pitching it to QNX
+We are pitching DIVA to QNX as a sponsored build. The core of the pitch is that the glider's pitch angle sets its speed, range and glide ratio, so the loop that holds that angle has to run on time, every time, even while a vision system is busy. That is the job for QNX Neutrino. The demo we plan to run in the pool is simple: stop the vision process mid-glide and watch DIVA keep flying.
+
+The renders on this page come from our team's interactive 3D pitch site.
