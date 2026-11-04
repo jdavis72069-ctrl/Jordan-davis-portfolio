@@ -56,11 +56,13 @@
     <div class="page">
       <nav class="topnav" id="topnav" aria-label="Primary">
         <div class="topnav__inner">
-          <a class="topnav__brand" href="#top" aria-label="Jordan Davis, back to top">
-            <svg class="topnav__star" viewBox="0 0 48 48" aria-hidden="true">
-              <use href="#star-doodle" />
-            </svg>
-            <span>JD</span>
+          <a class="topnav__brand" href="index.html#top" aria-label="Jordan Davis, home">
+            <span class="topnav__mark" aria-hidden="true">
+              <svg class="topnav__star" viewBox="0 0 48 48"><use href="#star-doodle" /></svg>
+              <i class="topnav__moon"></i>
+            </span>
+            <span class="topnav__name">Jordan Davis</span>
+            <span class="topnav__note">engineer &amp; artist</span>
           </a>
           <button
             class="topnav__toggle"
@@ -169,10 +171,13 @@
 
         <section id="about" class="section" aria-labelledby="about-title">
           <div class="wrap">
+            <header class="section__head" data-reveal="up">
+              <p class="section__kicker" aria-hidden="true">about me</p>
+              <h2 class="section__title" id="about-title" data-draw>About</h2>
+            </header>
             <div class="about">
               <figure class="about__photo" data-reveal="left"></figure>
               <div class="about__text" data-reveal="right">
-                <h2 class="section__title" id="about-title" data-draw>About</h2>
                 <div class="prose"></div>
               </div>
             </div>
@@ -183,9 +188,8 @@
           <div class="projects__grid-bg" aria-hidden="true"></div>
           <div class="wrap">
             <header class="section__head">
-              <h2 class="section__title section__title--xl" id="projects-title" data-draw>
-                Projects
-              </h2>
+              <p class="section__kicker" aria-hidden="true">things I've built</p>
+              <h2 class="section__title" id="projects-title" data-draw>Projects</h2>
               <p class="section__intro"></p>
             </header>
             <div class="groups"></div>
@@ -211,14 +215,15 @@
           </svg>
           <div class="wrap">
             <header class="section__head">
-              <h2 class="section__title section__title--xl" id="art-title" data-draw>Art</h2>
+              <p class="section__kicker" aria-hidden="true">sketchbook</p>
+              <h2 class="section__title" id="art-title" data-draw>Art</h2>
               <p class="section__intro"></p>
             </header>
             <div class="art-grid"></div>
           </div>
         </section>
 
-        <section id="skills" class="section section--center" aria-labelledby="skills-title">
+        <section id="skills" class="section" aria-labelledby="skills-title">
           <svg
             class="doodle-star"
             style="--s: 36px; top: 10%; left: 10%"
@@ -236,8 +241,9 @@
             <use href="#star-doodle" />
           </svg>
           <div class="wrap">
-            <header class="section__head section__head--center">
-              <h2 class="section__title section__title--xl" id="skills-title" data-draw>Skills</h2>
+            <header class="section__head">
+              <p class="section__kicker" aria-hidden="true">tools of the trade</p>
+              <h2 class="section__title" id="skills-title" data-draw>Skills</h2>
               <p class="section__intro"></p>
             </header>
             <div class="skills-grid"></div>
@@ -262,10 +268,13 @@
             <use href="#star-doodle" />
           </svg>
           <div class="wrap">
+            <header class="section__head" data-reveal="up">
+              <p class="section__kicker" aria-hidden="true">on my nightstand</p>
+              <h2 class="section__title" id="reading-title" data-draw>Currently reading</h2>
+            </header>
             <div class="reading">
               <div class="reading__book" data-reveal="pop"></div>
               <div class="reading__text" data-reveal="up">
-                <h2 class="section__title" id="reading-title" data-draw>Currently reading</h2>
                 <p class="reading__meta"></p>
                 <div class="prose"></div>
               </div>
@@ -273,11 +282,7 @@
           </div>
         </section>
 
-        <section
-          id="contact"
-          class="section section--center section--contact"
-          aria-labelledby="contact-title"
-        >
+        <section id="contact" class="section section--contact" aria-labelledby="contact-title">
           <svg
             class="doodle-star"
             style="--s: 46px; top: 14%; left: 12%"
@@ -312,9 +317,8 @@
           </svg>
           <div class="wrap">
             <div class="contact" data-reveal="up">
-              <h2 class="section__title section__title--xl" id="contact-title" data-draw>
-                Contact
-              </h2>
+              <p class="section__kicker" aria-hidden="true">say hello</p>
+              <h2 class="section__title" id="contact-title" data-draw>Contact</h2>
               <div class="prose contact__invite"></div>
               <a class="contact__email" href="#contact"></a>
               <ul class="contact__links"></ul>
@@ -329,6 +333,7 @@
       </footer>
     </div>
 
+    <script src="js/parser.js" defer></script>
     <script src="js/content.js" defer></script>
     <script src="js/sky.js" defer></script>
     <script src="js/motion.js" defer></script>

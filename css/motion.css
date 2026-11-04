@@ -164,8 +164,7 @@ html.lb-open body {
 .art__frame {
   rotate: var(--art-rot, 0deg);
 }
-.projects__grid-bg,
-.project .media {
+.projects__grid-bg {
   overflow: hidden;
 }
 
@@ -367,22 +366,52 @@ html.lb-open body {
   .project:focus-within {
     transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-6px);
   }
-  .project .media {
+  /* On hover the whole frame grows a little and its outline re-draws itself. The photo
+     is never zoomed inside its box, so nothing is ever cropped. */
+  .media {
     transition:
       border-radius 0.9s ease,
-      box-shadow 0.6s ease;
+      box-shadow 0.6s ease,
+      scale 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
   .project:hover .media,
   .project:focus-within .media {
-    border-radius: 15px 255px 15px 225px / 225px 15px 255px 15px;
+    border-radius: var(--frame-b);
     box-shadow: 0 10px 34px rgba(206, 217, 245, 0.16);
+    scale: 1.025;
   }
-  .project .media img {
-    transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  .gallery__item .media:hover {
+    border-radius: var(--frame-b);
+    scale: 1.015;
   }
-  .project:hover .media img,
-  .project:focus-within .media img {
-    transform: scale(1.04);
+  .art .media:hover {
+    scale: 1;
+  }
+
+  /* Brand: a tiny moon circles the doodle star */
+  .topnav__moon {
+    animation: moon-orbit 7s linear infinite;
+  }
+  @keyframes moon-orbit {
+    from {
+      transform: rotate(0deg) translateX(14px);
+    }
+    to {
+      transform: rotate(360deg) translateX(14px);
+    }
+  }
+
+  /* Flight-path trail: the head dot breathes a little as it travels */
+  .trail__head {
+    animation: trail-pulse 2.4s ease-in-out infinite alternate;
+  }
+  @keyframes trail-pulse {
+    from {
+      opacity: 0.7;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   /* Art frames: pinned sketch gets picked up */
@@ -459,6 +488,15 @@ html.lb-open body {
   .squiggle path {
     stroke-dashoffset: 0 !important;
     transition: none !important;
+  }
+  /* The trail is shown fully drawn and still */
+  .trail__head {
+    display: none;
+  }
+  .trail__mark {
+    opacity: 1;
+    scale: 1;
+    transition: none;
   }
   .lb,
   .lb__frame {

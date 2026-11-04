@@ -1,5 +1,5 @@
 /* Motion layer: reveals, hero letter split, squiggle draw-on, parallax, tilt,
-   doodle stars, topnav state and the lightbox. Vanilla JS, no libraries.
+   the flight-path trail, doodle stars, topnav state and the lightbox. Vanilla JS, no libraries.
    Works whenever content arrives (content:ready event OR html.content-ready class). */
 (function () {
   'use strict';
@@ -436,6 +436,315 @@
     update();
   }
 
+  /* ---------- Flight-path trail ----------
+     A dotted line that starts on one of the hero's orbit rings and winds down the page,
+     passing a small star or planet at every section heading. It sits behind the content
+     and is revealed progressively as you scroll. It is rebuilt whenever the page's height
+     changes (images loading, fonts arriving, window resizes), so it always lines up with
+     the real headings. With reduced motion it is shown fully drawn and does not animate. */
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+
+  function svgEl(name, attrs) {
+    var el = document.createElementNS(SVG_NS, name);
+    Object.keys(attrs || {}).forEach(function (key) {
+      el.setAttribute(key, attrs[key]);
+    });
+    return el;
+  }
+
+  /** Position of an element inside `ancestor`, ignoring transforms (so reveal offsets don't matter). */
+  function offsetWithin(el, ancestor) {
+    var x = 0;
+    var y = 0;
+    var node = el;
+    while (node && node !== ancestor) {
+      x += node.offsetLeft;
+      y += node.offsetTop;
+      node = node.offsetParent;
+    }
+    return { x: x, y: y };
+  }
+
+  /** Smooth path through points that always travel downwards: each hop is an S-curve. */
+  function trailPathData(points) {
+    var d = 'M' + points[0].x.toFixed(1) + ' ' + points[0].y.toFixed(1);
+    for (var i = 1; i < points.length; i++) {
+      var a = points[i - 1];
+      var b = points[i];
+      var rise = (b.y - a.y) * 0.55;
+      var lean = (b.x - a.x) * 0.12;
+      d +=
+        ' C' +
+        (a.x + lean).toFixed(1) +
+        ' ' +
+        (a.y + rise).toFixed(1) +
+        ' ' +
+        (b.x - lean).toFixed(1) +
+        ' ' +
+        (b.y - rise).toFixed(1) +
+        ' ' +
+        b.x.toFixed(1) +
+        ' ' +
+        b.y.toFixed(1);
+    }
+    return d;
+  }
+
+  function setupTrail() {
+    var page = $('.page');
+    if (!page || !$('.section__title', page)) return;
+
+    // Static pieces, created once
+    var svg = svgEl('svg', { class: 'trail', 'aria-hidden': 'true', focusable: 'false' });
+    var defs = svgEl('defs');
+    var mask = svgEl('mask', { id: 'trail-mask', maskUnits: 'userSpaceOnUse' });
+    var reveal = svgEl('path', { class: 'trail__reveal' });
+    var dots = svgEl('path', { class: 'trail__dots', mask: 'url(#trail-mask)' });
+    var marks = svgEl('g');
+    var head = svgEl('circle', { class: 'trail__head', r: 4.5 });
+    mask.appendChild(reveal);
+    defs.appendChild(mask);
+    [defs, dots, marks, head].forEach(function (node) {
+      svg.appendChild(node);
+    });
+    page.insertBefore(svg, page.firstChild);
+
+    var state = { total: 0, samples: [], marks: [], shown: 0, goal: 0, pageTop: 0, raf: 0 };
+
+    /** Where the trail begins: on the hero's fourth ring, or just above the first heading. */
+    function startPoint(titles, laneRight) {
+      var orbits = $('.hero__orbits', page);
+      if (orbits) {
+        var box = offsetWithin(orbits, page);
+        var size = orbits.offsetWidth;
+        var angle = (105 * Math.PI) / 180;
+        var radius = (230 / 600) * size;
+        return {
+          x: box.x + size / 2 + radius * Math.cos(angle),
+          y: box.y + size / 2 + radius * Math.sin(angle),
+        };
+      }
+      return { x: laneRight, y: Math.max(90, titles[0].y - 220) };
+    }
+
+    function headingPoints() {
+      return $$('.section__title', page)
+        .filter(function (el) {
+          return el.offsetParent !== null;
+        })
+        .map(function (el) {
+          var pos = offsetWithin(el, page);
+          return { x: pos.x, y: pos.y + el.offsetHeight * 0.45 };
+        });
+    }
+
+    /** Build the list of points the trail passes through, top to bottom. */
+    function buildPoints(pageW, pageH) {
+      var titles = headingPoints();
+      if (!titles.length) return null;
+      var leftmost = Math.min.apply(
+        null,
+        titles.map(function (t) {
+          return t.x;
+        }),
+      );
+      var laneLeft = Math.max(14, leftmost - 38);
+      var laneRight = pageW - laneLeft;
+      var points = [startPoint(titles, laneRight)];
+      var kinds = [null];
+
+      var hero = $('.hero', page);
+      if (hero) {
+        points.push({ x: pageW * 0.7, y: offsetWithin(hero, page).y + hero.offsetHeight - 30 });
+        kinds.push(null);
+      }
+
+      titles.forEach(function (title, i) {
+        var previous = points[points.length - 1];
+        var gap = title.y - previous.y;
+        // Long stretches swing out to the side margins and back, in an odd number of
+        // sweeps so the trail arrives at each heading on the left.
+        if (i > 0) {
+          var sweeps = Math.max(1, 2 * Math.round((gap / 900 - 1) / 2) + 1);
+          for (var s = 1; s <= sweeps; s++) {
+            points.push({
+              x: s % 2 ? laneRight : laneLeft,
+              y: previous.y + (gap * s) / (sweeps + 1),
+            });
+            kinds.push(null);
+          }
+        }
+        points.push({ x: Math.max(14, title.x - 38), y: title.y });
+        kinds.push(i % 2 ? 'planet' : 'star');
+      });
+
+      // A last star near the foot of the page
+      var footer = $('.footer', page);
+      var endY = footer ? offsetWithin(footer, page).y - 40 : pageH - 80;
+      var lastTitle = points[points.length - 1];
+      if (endY - lastTitle.y > 160) {
+        points.push({ x: laneRight, y: endY });
+        kinds.push('star');
+      }
+
+      // Keep only points that move down, so every hop is a clean S-curve
+      var keptPoints = [];
+      var keptKinds = [];
+      points.forEach(function (pt, i) {
+        var last = keptPoints[keptPoints.length - 1];
+        if (!last || pt.y > last.y + 24) {
+          keptPoints.push(pt);
+          keptKinds.push(kinds[i]);
+        }
+      });
+      return { points: keptPoints, kinds: keptKinds };
+    }
+
+    /** Index of the last sample whose y is at or above `y` (samples run top to bottom). */
+    function lengthAtY(y) {
+      var samples = state.samples;
+      var lo = 0;
+      var hi = samples.length - 1;
+      while (lo < hi) {
+        var mid = (lo + hi + 1) >> 1;
+        if (samples[mid].y <= y) lo = mid;
+        else hi = mid - 1;
+      }
+      return samples[lo].len;
+    }
+
+    function markShape(kind, point) {
+      var g = svgEl('g', { class: 'trail__mark' });
+      if (kind === 'planet') {
+        g.appendChild(
+          svgEl('circle', { cx: point.x, cy: point.y, r: 5, class: 'trail__planet-core' }),
+        );
+        g.appendChild(
+          svgEl('ellipse', {
+            cx: point.x,
+            cy: point.y,
+            rx: 13,
+            ry: 4.5,
+            transform: 'rotate(-24 ' + point.x + ' ' + point.y + ')',
+          }),
+        );
+      } else {
+        var size = 26;
+        g.appendChild(
+          svgEl('use', {
+            href: '#star-doodle',
+            x: point.x - size / 2,
+            y: point.y - size / 2,
+            width: size,
+            height: size,
+          }),
+        );
+      }
+      return g;
+    }
+
+    function layout() {
+      var pageW = page.clientWidth;
+      var pageH = page.offsetHeight;
+      var plan = buildPoints(pageW, pageH);
+      if (!plan || plan.points.length < 2) {
+        svg.style.display = 'none';
+        return;
+      }
+      svg.style.display = '';
+      svg.setAttribute('viewBox', '0 0 ' + pageW + ' ' + pageH);
+      svg.setAttribute('width', pageW);
+      svg.setAttribute('height', pageH);
+      svg.style.height = pageH + 'px';
+      mask.setAttribute('x', 0);
+      mask.setAttribute('y', 0);
+      mask.setAttribute('width', pageW);
+      mask.setAttribute('height', pageH);
+
+      var d = trailPathData(plan.points);
+      reveal.setAttribute('d', d);
+      dots.setAttribute('d', d);
+      state.total = reveal.getTotalLength();
+      reveal.style.strokeDasharray = state.total;
+
+      // Sample the curve so scroll position can be turned into "how much is drawn"
+      state.samples = [];
+      for (var len = 0; len <= state.total; len += 10) {
+        state.samples.push({ len: len, y: reveal.getPointAtLength(len).y });
+      }
+      state.samples.push({ len: state.total, y: reveal.getPointAtLength(state.total).y });
+
+      // Markers at the headings (and the closing star)
+      marks.textContent = '';
+      state.marks = [];
+      plan.points.forEach(function (point, i) {
+        if (!plan.kinds[i]) return;
+        var shape = markShape(plan.kinds[i], point);
+        marks.appendChild(shape);
+        state.marks.push({ el: shape, len: lengthAtY(point.y) });
+      });
+
+      state.pageTop = page.getBoundingClientRect().top + window.pageYOffset;
+      measureGoal();
+      state.shown = REDUCED ? state.total : state.goal;
+      paint();
+    }
+
+    /** How much of the trail should be drawn for the current scroll position. */
+    function measureGoal() {
+      if (REDUCED) {
+        state.goal = state.total;
+        return;
+      }
+      var viewportBottom = window.pageYOffset + (window.innerHeight || 800) * 0.68;
+      state.goal = lengthAtY(viewportBottom - state.pageTop);
+    }
+
+    function paint() {
+      reveal.style.strokeDashoffset = state.total - state.shown;
+      var tip = reveal.getPointAtLength(Math.min(state.shown, state.total));
+      head.setAttribute('cx', tip.x);
+      head.setAttribute('cy', tip.y);
+      head.style.display = state.shown <= 1 || state.shown >= state.total - 1 ? 'none' : '';
+      state.marks.forEach(function (m) {
+        m.el.classList.toggle('is-lit', REDUCED || state.shown >= m.len - 8);
+      });
+    }
+
+    // Ease towards the goal so the line glides rather than jumping with the scrollbar
+    function step() {
+      state.raf = 0;
+      var diff = state.goal - state.shown;
+      if (Math.abs(diff) < 0.6) {
+        state.shown = state.goal;
+      } else {
+        state.shown += diff * 0.14;
+        state.raf = requestAnimationFrame(step);
+      }
+      paint();
+    }
+
+    function onScroll() {
+      measureGoal();
+      if (!state.raf) state.raf = requestAnimationFrame(step);
+    }
+
+    layout();
+
+    var pending = 0;
+    function relayout() {
+      if (pending) return;
+      pending = requestAnimationFrame(function () {
+        pending = 0;
+        layout();
+      });
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(relayout).observe(page);
+    window.addEventListener('resize', relayout, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
+    if (!REDUCED) window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
   /* ---------- Subtle card tilt ---------- */
   function setupTilt() {
     if (REDUCED || !FINE) return;
@@ -476,6 +785,7 @@
     setupHeroAndNav();
     setupGridBg();
     setupTilt();
+    setupTrail();
     root.classList.add('motion-ready');
   }
 
