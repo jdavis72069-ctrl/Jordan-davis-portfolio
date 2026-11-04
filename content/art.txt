@@ -5,7 +5,7 @@
 Heading: Art
 #
 # Intro: one short sentence shown under the heading. Leave empty to hide it.
-Intro: I work in watercolor and digital sketching, and both keep the same eye for function, simplicity and clean form that I bring to engineering.
+Intro: My artistic work spans various mediums, from watercolor and gouache to digital art and mural design. My creative eye for sleek compositions and inspiration from nature supplement my technical approach to engineering problems. 
 
 ---
 
