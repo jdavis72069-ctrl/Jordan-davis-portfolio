@@ -71,7 +71,8 @@ You do not need to install anything or know any programming. Every word on the s
 
    - On the repository page, click the "Images" folder, then the folder for the picture type:
        Images/Projects   for project pictures
-       Images/Art        for artwork (create this folder if it isn't there)
+       Images/Art        for artwork
+       Images/Books      for book covers (used in reading.txt)
        Images/Logos and Decals   for logos and the profile photo
    - Click "Add file" > "Upload files", drop your picture in, and click "Commit changes".
    - Then go to the file that uses the picture (for example, a project file) and type its path

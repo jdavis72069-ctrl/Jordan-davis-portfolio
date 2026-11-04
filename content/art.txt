@@ -5,49 +5,59 @@
 Heading: Art
 #
 # Intro: one short sentence shown under the heading. Leave empty to hide it.
-Intro: Digital illustration is where I practice the same eye for function, simplicity and aesthetics that I bring to engineering.
+Intro: I work in watercolor and digital sketching, and both keep the same eye for function, simplicity and clean form that I bring to engineering.
 
 ---
 
 # ONE BLOCK PER ARTWORK. Blocks are separated by a line containing only three dashes (---).
+# The order of the blocks is the order the pieces appear on the site.
 #
 # HOW TO ADD A PICTURE:
-#   1. On GitHub, open the Images folder, then the Art folder (create it if it isn't there).
+#   1. On GitHub, open the Images folder, then the Art folder.
 #   2. Click "Add file" > "Upload files", drop in your picture, and click "Commit changes".
 #   3. Type the path to that picture after "Image:" below, for example: Images/Art/sunset-study.jpg
 #   If you leave "Image:" empty, a star doodle frame is shown instead.
+#   The "-web" pictures are smaller copies of the originals in the same folder, so the page loads fast.
 #
 # Image: the path to the artwork picture (see above). Leave empty for a placeholder.
-Image:
+Image: Images/Art/FountainPainting-web.jpg
 #
-# Title: the name of the piece. Currently shows "Coming soon" as a placeholder.
-Title: Coming soon
+# Image Alt: a short description of the picture, for people using screen readers.
+Image Alt: Watercolor of a tiered garden fountain with golden basins in front of dark cypress trees
+#
+# Title: the name of the piece.
+Title: Garden Fountain
 #
 # Medium: what it was made with, for example "Digital illustration". Leave empty to hide.
-Medium:
+Medium: Watercolor
 #
 # Year: the year it was made, for example "2025". Leave empty to hide.
-Year:
+Year: 2025
 
 # Optional: a short caption. Type it below the blank line above. Leave blank to hide it.
+I painted this tiered fountain in loose washes, with golden basins set against dark cypress trees and a soft blue sky.
 
 ---
 
-# HOW TO ADD MORE PIECES: copy everything from the first "---" line down to the next "---" line,
+# HOW TO ADD MORE PIECES: copy everything from one "---" line down to the next "---" line,
 # paste it at the end of this file, and fill in the new Image, Title, Medium and Year.
 
-Image:
-Title: Coming soon
-Medium:
+Image: Images/Art/MechaPainting-web.jpg
+Image Alt: Digital character sheet showing a pilot sketch, a line drawing of her mech suit, and the colored final design
+Title: Pilot and Suit
+Medium: Digital illustration
+#
+# NOTE FOR JORDAN: add the year this piece was made after "Year:".
 Year:
 
-# Optional: a short caption (below the blank line above).
+Sketch, line drawing and final color for one character. Working out how the suit's panels and joints fit together is the same kind of puzzle I enjoy in mechanical design.
 
 ---
 
-Image:
-Title: Coming soon
-Medium:
-Year:
+Image: Images/Art/TreesPainting-web.jpg
+Image Alt: Watercolor of tall trees with blue-violet trunks above a violet roof dappled with leaf shadows
+Title: Blue Trees
+Medium: Watercolor
+Year: 2026
 
-# Optional: a short caption (below the blank line above).
+A stand of tall, thin trees with blue-violet trunks and loose clumps of green and ochre leaves, above a violet roof dappled with leaf shadows.

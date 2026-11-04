@@ -18,7 +18,7 @@ Every change committed to `main` updates the live site automatically within a mi
 | Folder / file | What it holds |
 | --- | --- |
 | `content/` | All the text: about, projects, art, skills, reading, contact |
-| `Images/` | Photos, CAD renders and logos (`-web` files are smaller copies for fast loading) |
+| `Images/` | Photos, CAD renders, artwork, book covers and logos (`-web` files are smaller copies for fast loading) |
 | `index.html`, `css/`, `js/` | The page design and animations (no need to edit) |
 
 Previewing on your own computer: the page reads the `.txt` files over the web, so double-clicking
