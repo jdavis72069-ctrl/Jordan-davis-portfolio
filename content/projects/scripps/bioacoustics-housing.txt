@@ -10,7 +10,7 @@ Title: Deep-Sea Bioacoustics Housing
 Subtitle: Raspberry Pi hardware module · Summer 2025
 #
 # Summary: one or two sentences for the home-page card. Leave empty to use the first paragraph of the write-up.
-Summary: During my internship at Scripps, I designed a housing for a Raspberry Pi module used in deep-sea bioacoustics research. I developed the mount myself to meet the strict criteria of mooring deployment.
+Summary: Independently designed a Raspberry Pi module used in deep-sea bioacoustics research with the Marine Bioacoustics Research Collaborative (MBARC). 
 #
 # Role, Team and When: optional. When is empty, the group's dates are shown.
 Role: Mechanical design & prototyping
@@ -34,19 +34,16 @@ Link:
 Link Label:
 
 ## The challenge
-Bioacoustics research at sea depends on hardware that holds up on a mooring. The Raspberry Pi module needed a housing that met rigid deployment criteria, and the new design had to be smaller than the models before it.
+A compact module for the Raspberry Pi and its accompanying hardware was needed for deployment of a deep-sea, real-time whale tracking mooring. The fixture had to be sufficiently small enough to fit in the datalogger while firmly attached for pelagic deployment. 
 
 ## What I did
-- Developed the mount independently, to fit the criteria for mooring deployment.
+- Developed the mount to fit the criteria for mooring deployment.
+- Collaborated with multidisciplinary team of biologists and engineers.
 - Produced technical drawings, models and integrated assemblies in SolidWorks.
 - Selected the mechanical and electronic hardware and created the bill of materials (BOM).
-- Assembled and soldered test circuitry, and built prototypes with 3D printing.
+- Assembled and soldered test circuitry, and produced prototypes with 3D printing.
 - Wrote a MATLAB script that turned timestamped acoustic data into visual waveforms, to help with bioacoustic identification and analysis.
 
 ## How it came together
-I worked with a multidisciplinary team to iterate on and test configurations. Each round of prototypes informed the next, and the final prototype was fabricated at a quantifiably smaller size than the previous models.
+Produced a final prototype with quantifiable size reduction compared to previous Pi modules. Presented prototype to technical audience.
 
-I also took part in a rapid design and prototyping challenge, where I designed and fabricated an aquatic drogue.
-
-## What I took away
-Presenting the project outcomes to a technical audience pushed me to explain design choices clearly, not only to build them.
