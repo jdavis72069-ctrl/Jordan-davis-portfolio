@@ -879,6 +879,8 @@ main {
   border: 1.5px solid var(--line);
   border-radius: 20px;
   padding: clamp(14px, 2vw, 22px);
+  position: relative; /* anchors the stretched title link */
+  cursor: pointer;
   transition:
     border-color 0.3s,
     box-shadow 0.3s;
@@ -916,7 +918,31 @@ main {
   line-height: 1.15;
   color: var(--white-soft);
 }
-/* The title is a link to the project's own page; it reads as a heading until hovered. */
+/* Stretched link: the title link is the card's single real link. Its ::after covers the
+   whole (position: relative) card, so a click anywhere on the card opens the project page. */
+.project__title .project__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit; /* picks up the card's 20px radius for the focus ring */
+}
+.project__title .project__link:focus-visible {
+  outline: none; /* the whole card is ringed instead (see below) */
+}
+.project:has(.project__link:focus-visible) {
+  outline: 2px solid var(--lavender);
+  outline-offset: 4px;
+  border-color: var(--white-soft);
+}
+/* Fallback for browsers without :has() */
+@supports not selector(:has(*)) {
+  .project:focus-within {
+    outline: 2px solid var(--lavender);
+    outline-offset: 4px;
+  }
+}
+/* The title link is the heading; it reads as a heading until hovered. */
 .project__title .project__link {
   display: inline;
   margin: 0;
@@ -926,7 +952,7 @@ main {
   background: linear-gradient(var(--lavender), var(--lavender)) 0 100% / 0 2px no-repeat;
   transition: background-size 0.35s ease;
 }
-.project__title .project__link:hover,
+.project:hover .project__link,
 .project__title .project__link:focus-visible {
   background-size: 100% 2px;
 }
@@ -966,13 +992,13 @@ main {
   display: inline-block;
   transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.project__more:hover,
-.project__more:focus-visible {
+.project:hover .project__more,
+.project:has(.project__link:focus-visible) .project__more {
   color: var(--white-soft);
   border-bottom-color: var(--white-soft);
 }
-.project__more:hover::after,
-.project__more:focus-visible::after {
+.project:hover .project__more::after,
+.project:has(.project__link:focus-visible) .project__more::after {
   transform: translateX(6px);
 }
 
@@ -993,6 +1019,14 @@ main {
   padding: 5px 13px 6px;
   border: 1.5px dashed var(--line-strong);
   border-radius: 999px;
+}
+/* On project cards the frame is a plain div under the stretched link, not a lightbox */
+.project div.media {
+  cursor: inherit;
+  user-select: none;
+}
+.project__body {
+  user-select: none;
 }
 /* A standalone link to an outside page (not the title link above) */
 .project__link {

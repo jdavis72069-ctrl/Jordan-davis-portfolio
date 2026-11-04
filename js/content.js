@@ -109,8 +109,10 @@
   /**
    * Image button (opens the lightbox) or a placeholder when there are no images.
    * images: array of repo-relative paths.
+   * staticFrame: render a plain, non-interactive frame (no lightbox button) so a click
+   * on it falls through to the stretched card link underneath.
    */
-  function mediaHtml(images, alt, placeholderLabel) {
+  function mediaHtml(images, alt, placeholderLabel, staticFrame) {
     if (!images.length) return placeholderHtml(placeholderLabel || 'Image coming soon');
     var urls = images.map(imgUrl);
     var more = urls.length - 1;
@@ -122,17 +124,20 @@
           (more > 1 ? 's' : '') +
           '</span>'
         : '';
+    var img =
+      '<img class="media__img" src="' +
+      esc(urls[0]) +
+      '" alt="' +
+      esc(alt) +
+      '" loading="lazy" decoding="async">';
+    if (staticFrame) return '<div class="media">' + img + badge + '</div>';
     return (
       '<button type="button" class="media" data-lightbox data-images="' +
       esc(urls.join('|')) +
       '" data-alt="' +
       esc(alt) +
       '" aria-haspopup="dialog">' +
-      '<img class="media__img" src="' +
-      esc(urls[0]) +
-      '" alt="' +
-      esc(alt) +
-      '" loading="lazy" decoding="async">' +
+      img +
       badge +
       '</button>'
     );
@@ -197,7 +202,7 @@
       '>';
     html +=
       '<div class="project__media">' +
-      mediaHtml(images, alt, 'Project image coming soon') +
+      mediaHtml(images, alt, 'Project image coming soon', true) +
       '</div>';
     html += '<div class="project__body">';
     html +=
@@ -220,7 +225,9 @@
           .join('') +
         '</ul>';
     }
-    html += '<a class="project__more" href="' + esc(pageUrl) + '">Read the full story</a>';
+    // Visual cue only: the title link above is stretched over the whole card, so this
+    // is not a second link (hidden from assistive tech, not a tab stop).
+    html += '<span class="project__more" aria-hidden="true">Read the full story</span>';
     html += '</div></article>';
     return html;
   }
