@@ -280,7 +280,6 @@
    * ============================================================= */
 
   function renderNotFound(root) {
-    document.title = 'Project not found · Jordan Davis';
     root.innerHTML =
       '<section class="section project-missing"><div class="wrap">' +
       '<svg class="doodle-star" style="--s: 40px; top: 18%; right: 12%" viewBox="0 0 48 48" aria-hidden="true"><use href="#star-doodle" /></svg>' +
@@ -300,10 +299,9 @@
     var title = meta.title || 'Untitled project';
     var summary = meta.summary || T.firstParagraph(entry.project.body);
 
-    document.title = title + ' · Jordan Davis';
     setMetaDescription(plainSummary(summary));
     var ogTitle = $('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute('content', document.title);
+    if (ogTitle) ogTitle.setAttribute('content', title + ' · Jordan Davis');
     var ogDesc = $('meta[property="og:description"]');
     if (ogDesc && summary) ogDesc.setAttribute('content', plainSummary(summary));
 

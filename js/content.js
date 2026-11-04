@@ -154,7 +154,8 @@
           return '<span class="hero__line">' + esc(w.toUpperCase()) + '</span>';
         })
         .join('');
-      document.title = m.name + (m.tagline ? ' | ' + m.tagline : ' | Portfolio');
+      // The browser tab shows just the name, next to the star icon.
+      document.title = m.name;
     }
     var tag = $('.hero__tagline');
     var sub = $('.hero__subtitle');
