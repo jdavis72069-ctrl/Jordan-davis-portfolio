@@ -10,12 +10,12 @@ Title: All-In-One UMAC Module
 Subtitle: Electronics fixture
 #
 # Summary: one or two sentences for the home-page card. Leave empty to use the first paragraph of the write-up.
-Summary: I invented a for-purchase electronics fixture for the UMAC CI ultrasonic measuring system, along with its display and sensors. I built the engineering models and drawings for it in SolidWorks.
+Summary: Invented a commercial electronics fixture for the UMAC CI ultrasonic measuring system and its accompanying display and sensors. 
 #
 # Role and Team: optional. When is empty, the group's dates are shown.
 Role: Design & CAD
 Team:
-When:
+When: June-August 2026
 #
 # Images: picture paths, separated by COMMAS. The first picture is the cover. Leave empty for a star doodle.
 Images: Images/Projects/UMACAllinOne1.png, Images/Projects/UMACAllinOne2.png
@@ -34,13 +34,14 @@ Link:
 Link Label:
 
 ## The challenge
-The UMAC CI is an ultrasonic measuring system, and its display and sensors needed a dedicated fixture. Because the fixture was a product people could buy, it had to be easy to set up and make sense on its own.
+An integrated UMAC CI case had to be aesthetically appealing, simple to assemble, and sustainable in a factory environment. 
+
 
 ## What I did
-- Designed the fixture as a for-purchase product for the UMAC CI and its accompanying display and sensors.
+- Designed the fixture as a commercial product for the UMAC CI and its accompanying display and sensors.
 - Built engineering models in SolidWorks and turned them into design-for-manufacturing (DFM) drawings.
-- Wrote thorough documentation and bills of materials (BOMs), so the design could be built and ordered.
-- Created several prototypes to check how the parts fit together.
+- Wrote thorough documentation and bills of materials (BOMs).
+- Created several prototypes.
 
 ## Keeping the team in the loop
-I presented my progress at the weekly engineering meetings. Those meetings kept the design moving and gave everyone a clear view of where it stood.
+Progress was presented at weekly engineering meetings with senior engineers. 
