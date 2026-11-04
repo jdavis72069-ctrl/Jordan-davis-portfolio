@@ -11,7 +11,6 @@ Subtitle: Trade show exhibition fixture
 #
 # Summary: one or two sentences for the home-page card. Leave empty to use the first paragraph of the write-up.
 Summary: Designed a functional show case for the UMAC CI and relevant components to be exhibited at wire and cable expos. 
-
 #
 # Role and Team: optional. When is empty, the group's dates are shown.
 Role: Design & CAD
