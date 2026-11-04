@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Project · Jordan Davis</title>
+    <meta
+      name="description"
+      content="A project by Jordan Davis, mechanical engineer and visual artist."
+    />
+    <meta name="theme-color" content="#090F57" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Project · Jordan Davis" />
+    <meta
+      property="og:description"
+      content="A project by Jordan Davis, mechanical engineer and visual artist."
+    />
+    <meta property="og:image" content="Images/Logos%20and%20Decals/profilepic.jpg" />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Favicon: a lavender hand-drawn star, inline so there is nothing extra to host -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24.5 3.6L29.4 17.4L43.3 17.5L32.4 26.3L35.5 40.6L23.7 32.8L12.5 39.8L15.6 26.9L4.7 18.1L18.7 16.9Z' fill='%23CED9F5' stroke='%23CED9F5' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E"
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/motion.css" />
+    <link rel="stylesheet" href="css/project.css" />
+  </head>
+  <body class="subpage">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Shared hand-drawn star, reused everywhere with <use href="#star-doodle"> -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+      <symbol id="star-doodle" viewBox="0 0 48 48">
+        <path
+          d="M24.5 3.6L29.4 17.4L43.3 17.5L32.4 26.3L35.5 40.6L23.7 32.8L12.5 39.8L15.6 26.9L4.7 18.1L18.7 16.9L24.2 4.3"
+        />
+      </symbol>
+    </svg>
+
+    <!-- Night sky (drawn by js/sky.js) -->
+    <canvas id="sky" class="sky" aria-hidden="true"></canvas>
+
+    <div class="page">
+      <nav class="topnav" id="topnav" aria-label="Primary">
+        <div class="topnav__inner">
+          <a class="topnav__brand" href="index.html#top" aria-label="Jordan Davis, home">
+            <span class="topnav__mark" aria-hidden="true">
+              <svg class="topnav__star" viewBox="0 0 48 48"><use href="#star-doodle" /></svg>
+              <i class="topnav__moon"></i>
+            </span>
+            <span class="topnav__name">Jordan Davis</span>
+            <span class="topnav__note">engineer &amp; artist</span>
+          </a>
+          <button
+            class="topnav__toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="topnav-links"
+          >
+            <span class="topnav__toggle-label">Menu</span>
+            <span class="topnav__bars" aria-hidden="true"><i></i><i></i></span>
+          </button>
+          <ul class="topnav__links" id="topnav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#art">Art</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#reading">Reading</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- js/project.js fills this in from content/projects/<group>/<file>.txt -->
+      <main id="main" class="project-page">
+        <div class="loader" id="loader" role="status">
+          <svg class="loader__star" viewBox="0 0 48 48" aria-hidden="true">
+            <use href="#star-doodle" />
+          </svg>
+          <span class="visually-hidden">Loading</span>
+        </div>
+        <div id="project-root"></div>
+      </main>
+
+      <footer class="footer">
+        <p class="footer__text"></p>
+      </footer>
+    </div>
+
+    <script src="js/parser.js" defer></script>
+    <script src="js/project.js" defer></script>
+    <script src="js/sky.js" defer></script>
+    <script src="js/motion.js" defer></script>
+  </body>
+</html>

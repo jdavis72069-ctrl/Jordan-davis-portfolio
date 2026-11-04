@@ -1,82 +1,34 @@
 /*
  * content.js
  * ---------------------------------------------------------------
- * Loads the plain-text files in /content, parses them, and fills
- * the page skeleton in index.html. No libraries, no build step.
+ * Fills the home page skeleton in index.html from the plain-text
+ * files in /content. Parsing and loading live in js/parser.js
+ * (window.SiteText), which must be loaded first.
  *
  * Sections of this file:
- *   1. Tiny helpers (escaping, inline text, image URLs)
- *   2. The .txt parser (header / body / entries)
- *   3. Loading files
- *   4. Rendering (hero, about, projects, art, skills, reading, contact)
- *   5. Mobile nav toggle
- *   6. Main flow + "content ready" signal
+ *   1. Tiny helpers
+ *   2. Rendering (hero, about, projects, art, skills, reading, contact)
+ *   3. Mobile nav toggle
+ *   4. Main flow + "content ready" signal
  */
 (function () {
   'use strict';
 
-  var CONTENT_ROOT = 'content/';
+  var T = window.SiteText;
+  var esc = T.esc;
+  var inline = T.inline;
+  var plain = T.plain;
+  var splitList = T.splitList;
+  var imgUrl = T.imgUrl;
+  var isHidden = T.isHidden;
+  var bodyHtml = T.bodyHtml;
+  var loadDoc = T.loadDoc;
+  var loadEntries = T.loadEntries;
+  var loadProjects = T.loadProjects;
 
   /* =============================================================
    * 1. HELPERS
    * ============================================================= */
-
-  /** Escape text so it is safe to put into HTML (text or attribute). */
-  function esc(str) {
-    return String(str == null ? '' : str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
-
-  /**
-   * Inline text: escape HTML first, then allow only
-   *   **bold**  and  [link text](https://url)
-   * Links may only point to http(s) or mailto, so nothing sneaky can run.
-   */
-  function inline(str) {
-    var out = esc(str);
-    out = out.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-    out = out.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^\s)]+)\)/g, function (m, text, url) {
-      var external = /^https?:/i.test(url);
-      return (
-        '<a href="' +
-        url +
-        '"' +
-        (external ? ' target="_blank" rel="noopener noreferrer"' : '') +
-        '>' +
-        text +
-        '</a>'
-      );
-    });
-    return out;
-  }
-
-  /** Split "a, b, c" into ['a','b','c'], dropping empties. */
-  function splitList(str) {
-    return String(str || '')
-      .split(',')
-      .map(function (s) {
-        return s.trim();
-      })
-      .filter(Boolean);
-  }
-
-  /** Turn a repo-relative image path into a safe URL (spaces etc. are encoded). */
-  function imgUrl(path) {
-    return encodeURI(
-      String(path)
-        .trim()
-        .replace(/^\.?\//, ''),
-    );
-  }
-
-  /** "Show: no" (also false / hide / hidden) hides an item. */
-  function isHidden(meta) {
-    return /^(no|false|hide|hidden)$/i.test(meta.show || '');
-  }
 
   function $(sel, root) {
     return (root || document).querySelector(sel);
@@ -88,183 +40,7 @@
   }
 
   /* =============================================================
-   * 2. PARSER
-   * ============================================================= */
-
-  var HEADER_RE = /^([A-Za-z][A-Za-z ]*):\s*(.*)$/;
-
-  /** Normalise newlines, drop BOM, remove "#" comment lines. */
-  function clean(text) {
-    return String(text)
-      .replace(/^﻿/, '')
-      .replace(/\r\n?/g, '\n')
-      .split('\n')
-      .filter(function (line) {
-        return !/^\s*#/.test(line);
-      })
-      .join('\n');
-  }
-
-  /**
-   * Parse one block of (already cleaned) text into { meta, body }.
-   * meta keys are lower-cased; body is the text after the header.
-   */
-  function parseBlock(text) {
-    var lines = text.split('\n');
-    var i = 0;
-    var meta = {};
-    while (i < lines.length && lines[i].trim() === '') i++; // skip leading blanks
-    while (i < lines.length) {
-      // header lines
-      var m = HEADER_RE.exec(lines[i]);
-      if (!m) break;
-      meta[m[1].trim().toLowerCase()] = m[2].trim();
-      i++;
-    }
-    return { meta: meta, body: lines.slice(i).join('\n').trim() };
-  }
-
-  /** Parse a whole file with a single entry. */
-  function parseDoc(text) {
-    return parseBlock(clean(text));
-  }
-
-  /** Parse a file whose entries are separated by a line that is exactly "---". */
-  function parseEntries(text) {
-    return clean(text)
-      .split(/^[ \t]*---[ \t]*$/m)
-      .map(parseBlock);
-  }
-
-  /**
-   * Body text -> blocks: [{type:'p', text}] and [{type:'ul', items:[]}].
-   * Blank line = new paragraph; consecutive "- " lines = one list.
-   */
-  function parseBody(body) {
-    var blocks = [];
-    var para = [];
-    var list = null;
-    function flushPara() {
-      if (para.length) {
-        blocks.push({ type: 'p', text: para.join(' ') });
-        para = [];
-      }
-    }
-    function flushList() {
-      if (list) {
-        blocks.push({ type: 'ul', items: list });
-        list = null;
-      }
-    }
-    String(body || '')
-      .split('\n')
-      .forEach(function (raw) {
-        var line = raw.trim();
-        if (line === '') {
-          flushPara();
-          flushList();
-          return;
-        }
-        var bullet = /^-\s+(.*)$/.exec(line);
-        if (bullet) {
-          flushPara();
-          (list = list || []).push(bullet[1]);
-        } else {
-          flushList();
-          para.push(line);
-        }
-      });
-    flushPara();
-    flushList();
-    return blocks;
-  }
-
-  /** Body text -> HTML string of <p> and <ul>. */
-  function bodyHtml(body) {
-    return parseBody(body)
-      .map(function (b) {
-        if (b.type === 'ul') {
-          return (
-            '<ul>' +
-            b.items
-              .map(function (t) {
-                return '<li>' + inline(t) + '</li>';
-              })
-              .join('') +
-            '</ul>'
-          );
-        }
-        return '<p>' + inline(b.text) + '</p>';
-      })
-      .join('');
-  }
-
-  /** Body text where each non-empty line is a file path (project lists). */
-  function bodyLines(body) {
-    return String(body || '')
-      .split('\n')
-      .map(function (l) {
-        return l.trim().replace(/^-\s+/, '');
-      })
-      .filter(Boolean);
-  }
-
-  /* =============================================================
-   * 3. LOADING
-   * ============================================================= */
-
-  /** Fetch a file under content/. Resolves to text, or null (with a warning). */
-  function fetchText(rel) {
-    return fetch(CONTENT_ROOT + encodeURI(rel), { cache: 'no-cache' })
-      .then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        return res.text();
-      })
-      .catch(function (err) {
-        console.warn('[content] Could not load "' + rel + '": ' + err.message);
-        return null;
-      });
-  }
-
-  function loadDoc(rel) {
-    return fetchText(rel).then(function (t) {
-      return t == null ? null : parseDoc(t);
-    });
-  }
-
-  function loadEntries(rel) {
-    return fetchText(rel).then(function (t) {
-      return t == null ? null : parseEntries(t);
-    });
-  }
-
-  /** Load projects.txt, every group file, and every project file (all in parallel). */
-  function loadProjects() {
-    return loadDoc('projects.txt').then(function (doc) {
-      if (!doc) return null;
-      var groupFiles = bodyLines(doc.body);
-      return Promise.all(
-        groupFiles.map(function (gf) {
-          return loadDoc('projects/' + gf).then(function (group) {
-            if (!group) return null;
-            return Promise.all(
-              bodyLines(group.body).map(function (pf) {
-                return loadDoc('projects/' + pf);
-              }),
-            ).then(function (projects) {
-              group.projects = projects.filter(Boolean);
-              return group;
-            });
-          });
-        }),
-      ).then(function (groups) {
-        return { doc: doc, groups: groups.filter(Boolean) };
-      });
-    });
-  }
-
-  /* =============================================================
-   * 4. RENDERING
+   * 2. RENDERING
    * ============================================================= */
 
   /* A few slightly different hand-drawn underline paths (viewBox 0 0 200 12). */
@@ -295,7 +71,7 @@
   function setIntro(el, text) {
     if (!el) return;
     if (text) {
-      el.innerHTML = inline(text);
+      el.innerHTML = T.rich(text);
       el.hidden = false;
     } else {
       el.hidden = true;
@@ -377,9 +153,9 @@
     }
     var tag = $('.hero__tagline');
     var sub = $('.hero__subtitle');
-    tag.textContent = m.tagline || '';
+    tag.innerHTML = plain(m.tagline);
     tag.hidden = !m.tagline;
-    sub.textContent = m.subtitle || '';
+    sub.innerHTML = plain(m.subtitle);
     sub.hidden = !m.subtitle;
     if (m.footer) $('.footer__text').innerHTML = inline(m.footer);
     // Location is shown in the contact section (see renderContact).
@@ -412,6 +188,7 @@
     var skills = splitList(m.skills);
     var title = m.title || 'Untitled project';
     var alt = m['image alt'] || title;
+    var pageUrl = 'project.html?p=' + encodeURI(doc.slug);
     var html =
       '<article class="project project--' +
       (layout === 'rows' ? 'row' : 'card') +
@@ -423,9 +200,16 @@
       mediaHtml(images, alt, 'Project image coming soon') +
       '</div>';
     html += '<div class="project__body">';
-    html += '<h3 class="project__title">' + esc(title) + '</h3>';
-    if (m.subtitle) html += '<p class="project__subtitle">' + esc(m.subtitle) + '</p>';
-    if (doc.body) html += '<div class="prose">' + bodyHtml(doc.body) + '</div>';
+    html +=
+      '<h3 class="project__title"><a class="project__link" href="' +
+      esc(pageUrl) +
+      '">' +
+      plain(title) +
+      '</a></h3>';
+    if (m.subtitle) html += '<p class="project__subtitle">' + plain(m.subtitle) + '</p>';
+    // The card only teases the project; the full write-up lives on its own page.
+    var summary = m.summary || T.firstParagraph(doc.body);
+    if (summary) html += '<p class="project__summary">' + T.rich(summary) + '</p>';
     if (skills.length) {
       html +=
         '<ul class="tags" aria-label="Skills used">' +
@@ -436,12 +220,7 @@
           .join('') +
         '</ul>';
     }
-    if (/^https?:\/\//i.test(m.link || '')) {
-      html +=
-        '<a class="project__link" href="' +
-        esc(m.link) +
-        '" target="_blank" rel="noopener noreferrer">View project <span aria-hidden="true">&rarr;</span></a>';
-    }
+    html += '<a class="project__more" href="' + esc(pageUrl) + '">Read the full story</a>';
     html += '</div></article>';
     return html;
   }
@@ -704,7 +483,7 @@
   }
 
   /* =============================================================
-   * 5. NAV (mobile toggle)
+   * 3. NAV (mobile toggle)
    * ============================================================= */
   function initNav() {
     var nav = $('#topnav');
@@ -729,7 +508,7 @@
   }
 
   /* =============================================================
-   * 6. MAIN FLOW
+   * 4. MAIN FLOW
    * ============================================================= */
 
   /** Run one render step; a failure in one section never breaks the others. */

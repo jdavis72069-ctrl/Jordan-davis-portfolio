@@ -1,0 +1,304 @@
+/*
+ * project.css
+ * ---------------------------------------------------------------
+ * Layout for the project pages (project.html) only. Colours, fonts,
+ * badges, tags, media frames and the lightbox come from style.css
+ * and motion.css; this file just arranges them.
+ */
+
+/* Leave room for the fixed top bar. */
+.project-page {
+  padding-top: clamp(84px, 11vw, 120px);
+}
+
+/* ---------- Head: back link, badge, title, subtitle ---------- */
+.project-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  padding-bottom: clamp(24px, 4vw, 40px);
+}
+.back-link {
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 1.45rem;
+  line-height: 1;
+  color: var(--lavender);
+  text-decoration: none;
+  border-bottom: 1.5px dashed var(--lavender-glow);
+  padding-bottom: 3px;
+}
+.back-link:hover,
+.back-link:focus-visible {
+  color: var(--alice);
+}
+.project-head__group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+}
+/* The organisation logo is only a label here, so keep it smaller than on the home page. */
+.project-head .badge img {
+  max-height: clamp(30px, 4vw, 42px);
+}
+.project-head .badge--light {
+  padding: 8px 16px;
+}
+.project-head__org {
+  font-family: var(--font-hand);
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--alice-dim);
+}
+.project-page__title {
+  margin: 0;
+  max-width: 18ch;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.3rem, 7vw, 4.6rem);
+  line-height: 1.04;
+  letter-spacing: 0.01em;
+  color: var(--alice);
+  text-wrap: balance;
+}
+.project-page__subtitle {
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: clamp(1.5rem, 3.4vw, 2rem);
+  line-height: 1.2;
+  color: var(--lavender);
+}
+
+/* ---------- At a glance ---------- */
+.project-glance {
+  padding-bottom: clamp(24px, 4vw, 48px);
+}
+.glance {
+  max-width: 68ch;
+  padding: clamp(18px, 3vw, 28px);
+  border: 2px solid var(--lavender);
+  border-radius: var(--wobble-c);
+  background: rgba(14, 22, 112, 0.55);
+}
+.glance__label {
+  margin: 0 0 12px;
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--lavender);
+}
+.glance__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px 24px;
+  margin: 0;
+}
+.glance__item dt {
+  font-family: var(--font-hand);
+  font-weight: 600;
+  font-size: 1.15rem;
+  line-height: 1.1;
+  color: var(--alice-dim);
+}
+.glance__item dd {
+  margin: 2px 0 0;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--alice);
+}
+.glance__tags {
+  margin-top: 18px;
+}
+
+/* ---------- Gallery ---------- */
+/* Images are never cropped: every figure keeps its natural aspect ratio. */
+.project-gallery .gallery {
+  margin-top: clamp(24px, 4vw, 40px);
+}
+.gallery__item {
+  margin: 0;
+  break-inside: avoid;
+}
+.gallery .media {
+  aspect-ratio: auto;
+  height: auto;
+}
+.gallery .media > img.media__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.gallery__caption {
+  margin-top: 10px;
+  padding: 0 6px;
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  line-height: 1.2;
+  color: var(--alice-dim);
+  text-wrap: balance;
+}
+/* One image: let it be big, but not taller than a screen of reading. */
+.gallery--single {
+  max-width: 880px;
+}
+/* Two or more: a two-column grid. With an odd number of images the cover
+   spans the full width, so the rest pair up and no column is left empty. */
+.gallery--many {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 3vw, 36px);
+  align-items: start;
+}
+.gallery--many .gallery__item:first-child:nth-last-child(odd) {
+  grid-column: 1 / -1;
+}
+
+/* Tall photos would fill the whole screen at full width, so cap their height.
+   The frame shrinks to fit the image, so nothing is ever cropped. */
+.gallery__item .media {
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+.gallery__item .media__img {
+  width: auto;
+  max-width: 100%;
+  max-height: 78vh;
+}
+
+/* ---------- Write-up ---------- */
+.project-story .story {
+  max-width: 68ch;
+  margin-top: clamp(24px, 4vw, 40px);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+.body__heading {
+  margin: 2em 0 0.4em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  line-height: 1.2;
+  color: var(--alice);
+  text-wrap: balance;
+}
+.story > .body__heading:first-child {
+  margin-top: 0;
+}
+.story__link {
+  margin: 32px 0 0;
+}
+.button-link {
+  display: inline-block;
+  padding: 10px 24px 12px;
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--alice);
+  text-decoration: none;
+  border: 2px solid var(--lavender);
+  border-radius: var(--wobble-a);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+.button-link:hover,
+.button-link:focus-visible {
+  background: var(--lavender);
+  color: var(--twilight);
+}
+
+/* ---------- Previous / next ---------- */
+.project-pager {
+  padding-top: clamp(24px, 4vw, 48px);
+}
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 3vw, 32px);
+}
+.pager--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+.pager__card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: clamp(18px, 3vw, 28px);
+  color: var(--alice);
+  text-decoration: none;
+  border: 2px solid var(--lavender);
+  border-radius: var(--wobble-b);
+  background: rgba(14, 22, 112, 0.55);
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+.pager__card--next {
+  text-align: right;
+  align-items: flex-end;
+}
+.pager__card:hover,
+.pager__card:focus-visible {
+  background: rgba(20, 29, 128, 0.85);
+  transform: translateY(-3px);
+}
+.pager__label {
+  font-family: var(--font-hand);
+  font-weight: 600;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--lavender);
+}
+.pager__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.pager__group {
+  font-size: 0.92rem;
+  color: var(--alice-dim);
+}
+
+/* ---------- Not found ---------- */
+.project-missing {
+  min-height: 50vh;
+}
+.project-missing__text {
+  max-width: 52ch;
+  margin: 18px 0 28px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Sections on this page sit closer together than on the home page. */
+.project-gallery,
+.project-story,
+.project-pager {
+  padding-top: clamp(32px, 6vw, 72px);
+  padding-bottom: clamp(32px, 6vw, 72px);
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 720px) {
+  .gallery--many {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pager {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pager__card--next {
+    text-align: left;
+    align-items: flex-start;
+  }
+  .project-page__title {
+    max-width: none;
+  }
+}
