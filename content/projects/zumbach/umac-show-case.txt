@@ -10,12 +10,13 @@ Title: UMAC Show Case
 Subtitle: Trade show exhibition fixture
 #
 # Summary: one or two sentences for the home-page card. Leave empty to use the first paragraph of the write-up.
-Summary: I designed a show case for the UMAC CI, built for exhibitions. It has a monitor mount and custom electronics padding, so the system can travel and be set up at shows.
+Summary: Designed a functional show case for the UMAC CI and relevant components to be exhibited at wire and cable expos. 
+
 #
 # Role and Team: optional. When is empty, the group's dates are shown.
 Role: Design & CAD
 Team:
-When:
+When: June-August 2026
 #
 # Images: picture paths, separated by COMMAS. The first picture is the cover. Leave empty for a star doodle.
 Images: Images/Projects/UMACCase1.png, Images/Projects/UMACCase2.png
@@ -34,13 +35,14 @@ Link:
 Link Label:
 
 ## The challenge
-The UMAC CI needed to be shown at trade shows. That meant it had to travel in a case and still be ready to use as soon as it was unpacked.
+A show case configuration had to be compact, sufficiently durable for travel, and functional within temperature constraints. 
 
 ## What I did
-- Designed the carrying case configuration for the UMAC CI ultrasonic precision measuring device, so it could be presented at shows.
-- Designed a monitor mount for the display.
-- Designed custom electronics padding to hold the equipment in place during transport.
-- Worked in SolidWorks on the layout and drafting, and revised the design as the parts came together.
+- Designed a precision-fit air TPU configuration and custom egg crate cushion for the UMAC CI and accompanying hardware 
+- Invented a custom monitor mount
+- Created SolidWorks models and integrated assemblies
+- Researched parts and materials to account for vibration, jostling, and overheating
+- Produced BOM 
 
 ## Why the layout matters
-An exhibition piece has to be easy to pack, carry and set up, often by someone who did not build it. I designed the case around the monitor and the padding so the setup stays consistent wherever it travels.
+The exhibition module had to fit within the Pelican 1660 travel case while balancing heating and vibration concerns. The module was designed to be accessible and usable by sales representatives for demos. 
