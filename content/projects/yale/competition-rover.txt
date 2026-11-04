@@ -38,12 +38,9 @@ Link Label:
 The Yale Rover team builds a rover for the University Rover Challenge. The drives sub-team is responsible for the parts that move the rover, so the chassis, the body and the suspension all had to fit together.
 
 ## What I did
-- Designed the electronics and battery housings to make the best use of chassis space and keep everything organized.
+- Designed the electronics, battery, and fan mounts to optimize chassis space and balance airflow and hardware protection. 
 - Helped assemble the chassis.
 - Developed the motor mounts in Onshape.
-- Machined aluminum components on the lathe and mill, which helped with hands-on assembly and troubleshooting.
-- Performed the structural calculations that determined the suspension fastener selection.
+- Machined aluminum components.
+- Performed structural calculations to determine suspension fastener selection.
 - Researched rocker-bogie suspension systems to choose the best mechanism.
-
-## Working on fit
-Much of the work came down to fit. Every housing and mount had to leave room for the rest of the chassis. Machining some of the aluminum parts myself made it easier to troubleshoot during assembly.
