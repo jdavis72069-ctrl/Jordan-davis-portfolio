@@ -10,7 +10,7 @@ Title: DIVA · Manta Ray Underwater Glider
 Subtitle: Senior design capstone · Group 1
 #
 # Summary: one or two sentences for the home-page card. Leave empty to use the first paragraph of the write-up.
-Summary: I'm on the mechanics and CAD side of DIVA, a manta-ray-inspired underwater glider that flies on buoyancy instead of propellers. I design its exterior structures and use Ansys Fluent to optimize the hull.
+Summary: I'm on the mechanics and CAD side of DIVA, a manta-ray-inspired underwater glider that leverages hydrodynamic fins instead of propellers. I design its exterior structures and use Ansys Fluent to optimize the hull.
 #
 # Role, Team and When: optional. When is empty, the group's dates are shown.
 Role: Mechanics · CAD
@@ -36,10 +36,10 @@ Link:
 Link Label: Visit the pitch site
 
 ## The idea
-DIVA (Deepwater Investigation & Visual Analysis) is a manta-ray-inspired underwater glider that flies on buoyancy instead of propellers. Our team built it as a senior design capstone. The motivation is simple: according to the US National Ocean Service, 75% of the seafloor is still unmapped, and most underwater vehicles spend much of their energy fighting drag with propellers.
+DIVA (Deepwater Investigation & Visual Analysis) is a manta-ray-inspired underwater glider that flies on buoyancy instead of propellers. Our team built it as a senior design capstone. The motivation is simple: according to the US National Ocean Service, 75% of the seafloor is still unmapped, and most underwater vehicles spend much of their energy fighting drag with propellers. DIVA is a QNX-sponsored project.
 
 ## How it moves
-An internal ballast engine makes DIVA heavier so it sinks, or lighter so it rises. The hydrofoil hull turns that vertical motion into a forward glide, so the vehicle travels in a sawtooth pattern with no propellers in cruise. That pattern uses far less energy than propulsion.
+The DIVA robot harnesses the highly-efficient biomechanics of the manta ray, utilizing its oscillating and undulating wing motion to move quietly and while conserving energy.
 
 ## My part
 Our team of four split the work by discipline. Murat Khidoyatov covers mechatronics and controls, Nowyshin Mridula handles manufacturing, and Chloe DeJoy works on soft robotics and controls. I'm on mechanics and CAD, where I:
@@ -60,8 +60,5 @@ The schedule runs from Fall 2026 to Spring 2027:
 - February: electronics and control loop integration, and a first pool test.
 - March: tuning the trim and fin waves, and reconciling simulation with pool data.
 - April to May: final validation, demo videos and the report.
-
-## Pitching it to QNX
-We are pitching DIVA to QNX as a sponsored build. The core of the pitch is that the glider's pitch angle sets its speed, range and glide ratio, so the loop that holds that angle has to run on time, every time, even while a vision system is busy. That is the job for QNX Neutrino. The demo we plan to run in the pool is simple: stop the vision process mid-glide and watch DIVA keep flying.
 
 The renders on this page come from our team's interactive 3D pitch site.
