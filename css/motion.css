@@ -164,9 +164,6 @@ html.lb-open body {
 .art__frame {
   rotate: var(--art-rot, 0deg);
 }
-.projects__grid-bg {
-  overflow: hidden;
-}
 
 /* ---------- Motion (only when the user has no reduced-motion preference) ---------- */
 @media (prefers-reduced-motion: no-preference) {
@@ -179,7 +176,6 @@ html.lb-open body {
       translate 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
       scale 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
       rotate 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
-    will-change: opacity, translate;
   }
   html.js-motion [data-reveal='left'] {
     translate: -40px 0;
@@ -208,7 +204,6 @@ html.lb-open body {
   html.js-motion [data-reveal].is-settled {
     transition-delay: 0s;
     transition-duration: 0.5s;
-    will-change: auto;
   }
 
   /* Hero letters */
@@ -238,11 +233,12 @@ html.lb-open body {
     }
   }
 
-  /* Orbit rings. Markup: <svg viewBox="-300 -300 600 600"><g class="orbit orbit--N">
-     <circle class="ring" cx="0" cy="0" r="R"/> [<circle class="orbit-planet" cx="R" cy="0"/>]</g>... */
+  /* Orbit rings. Markup: five stacked <svg class="orbit orbit--N" viewBox="-300 -300 600 600">,
+     each holding one ring (and a planet). The <svg> itself is rotated about its centre, which
+     is the ring's centre, so the browser spins it as a layer on the graphics card. */
   .hero__orbits .orbit {
-    transform-box: fill-box; /* group bbox = its ring, so centre == ring centre (0,0) */
-    transform-origin: center;
+    transform-origin: 50% 50%;
+    will-change: transform;
     animation: orbit-spin var(--orbit-dur, 90s) linear infinite;
     animation-direction: var(--orbit-dir, normal);
   }
@@ -271,20 +267,8 @@ html.lb-open body {
       transform: rotate(360deg);
     }
   }
-  .hero__orbits .orbit-planet {
-    animation: planet-glow 5s ease-in-out infinite alternate;
-  }
-  @keyframes planet-glow {
-    from {
-      opacity: 0.65;
-    }
-    to {
-      opacity: 1;
-    }
-  }
 
   .hero.is-offscreen .orbit,
-  .hero.is-offscreen .orbit-planet,
   .hero.is-offscreen .hero__cue {
     animation-play-state: paused;
   }
@@ -340,10 +324,10 @@ html.lb-open body {
     }
   }
 
-  /* Projects grid background: JS drives `translate` (parallax), CSS drives `transform` (breathing) */
+  /* Projects grid background: JS drives `translate` (parallax), CSS drives `transform` (breathing).
+     The layer is only as big as the picture, and the breathing pauses when it is off screen. */
   .projects__grid-bg {
     animation: grid-breathe 38s ease-in-out infinite alternate;
-    will-change: transform, translate;
   }
   .projects__grid-bg.is-paused {
     animation-play-state: paused;
@@ -357,9 +341,9 @@ html.lb-open body {
     }
   }
 
-  /* Project cards: lift + tilt (vars from JS), wobbling frame, image zoom */
+  /* Project cards: lift + tilt (vars from JS), wobbling frame, image zoom. At rest a card has
+     no transform at all, so it only gets its own 3D layer while it is hovered or focused. */
   .project {
-    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(0);
     transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
   .project:hover,
@@ -401,17 +385,25 @@ html.lb-open body {
     }
   }
 
-  /* Flight-path trail: the head dot breathes a little as it travels */
-  .trail__head {
-    animation: trail-pulse 2.4s ease-in-out infinite alternate;
+  /* Flight-path trail: each hop is wiped in top to bottom (the direction the path runs), once,
+     the first time it scrolls into view. The clipping box slides down into place while the
+     drawing slides up inside it by the same amount, so the drawing never moves but is
+     uncovered from the top. Both are plain transforms, so no repainting is needed. */
+  html.js-motion .trail__slide {
+    transform: translateY(-100%);
+    transition: transform 1.4s cubic-bezier(0.45, 0.05, 0.35, 1);
   }
-  @keyframes trail-pulse {
-    from {
-      opacity: 0.7;
-    }
-    to {
-      opacity: 1;
-    }
+  html.js-motion .trail__draw {
+    transform: translateY(100%);
+    transition: transform 1.4s cubic-bezier(0.45, 0.05, 0.35, 1);
+  }
+  html.js-motion .trail__hop.is-in .trail__slide,
+  html.js-motion .trail__hop.is-in .trail__draw {
+    transform: none;
+  }
+  html.js-motion .trail__hop.is-instant .trail__slide,
+  html.js-motion .trail__hop.is-instant .trail__draw {
+    transition: none;
   }
 
   /* Art frames: pinned sketch gets picked up */
@@ -490,9 +482,6 @@ html.lb-open body {
     transition: none !important;
   }
   /* The trail is shown fully drawn and still */
-  .trail__head {
-    display: none;
-  }
   .trail__mark {
     opacity: 1;
     scale: 1;

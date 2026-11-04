@@ -207,9 +207,8 @@ code {
 }
 .topnav--scrolled,
 .topnav.is-open {
+  /* Mostly opaque instead of a blur: a backdrop blur over the animated sky is re-done every frame. */
   background: rgba(9, 15, 87, 0.9);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
   border-bottom-color: var(--lavender-faint);
 }
 .topnav__inner {
@@ -392,7 +391,11 @@ code {
   --orbit-size: clamp(380px, 62vw, 860px);
   pointer-events: none;
 }
-.hero__orbits svg {
+/* Five stacked SVGs, one per ring. Each is rotated as a whole (motion.css), which the
+   browser can do on the graphics card; rotating shapes inside one SVG cannot. */
+.hero__orbits .orbit {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: block;
@@ -408,6 +411,7 @@ code {
 .hero__orbits .orbit-planet {
   fill: var(--lavender);
   stroke: none;
+  opacity: 0.85;
 }
 .hero__orbits .orbit-core {
   fill: var(--lavender);
@@ -658,17 +662,31 @@ main {
   margin-top: 0;
 }
 
-/* ---------- Flight-path trail (drawn by js/motion.js) ---------- */
-/* One long dotted line behind the page content that links the hero's orbits to each
-   section heading. The dots are revealed by a mask as the visitor scrolls. */
+/* ---------- Flight-path trail (built by js/motion.js) ---------- */
+/* A dotted line behind the page content that links the hero's orbits to each section
+   heading. It is made of small SVGs, one per hop, each placed absolutely on the page. */
 .trail {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  height: 0;
   z-index: 0;
-  overflow: visible;
   pointer-events: none;
+}
+.trail__hop {
+  position: absolute;
+  overflow: hidden;
+  pointer-events: none;
+}
+.trail__slide {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.trail__draw {
+  display: block;
+  overflow: hidden;
 }
 .trail__dots {
   fill: none;
@@ -677,11 +695,6 @@ main {
   stroke-linecap: round;
   stroke-dasharray: 0.1 14;
   opacity: 0.6;
-}
-.trail__reveal {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 14;
 }
 .trail__mark {
   fill: none;
@@ -697,17 +710,13 @@ main {
   transform-origin: center;
   scale: 0.6;
 }
-.trail__mark.is-lit {
+.trail__hop.is-lit .trail__mark {
   opacity: 1;
   scale: 1;
 }
 .trail__planet-core {
   fill: var(--lavender);
   stroke: none;
-}
-.trail__head {
-  fill: var(--white-soft);
-  filter: drop-shadow(0 0 6px rgba(206, 217, 245, 0.9));
 }
 
 /* ---------- About ---------- */
@@ -758,19 +767,28 @@ main {
   overflow: hidden;
 }
 .projects__grid-bg {
+  /* Only as big as the picture it holds (2400 x 1855), not the whole section, so the
+     browser keeps a small layer instead of a six-thousand-pixel one. It is anchored to
+     the right edge and starts a little above the section, as the picture always did. */
   position: absolute;
-  left: 0;
+  top: -260px;
   right: 0;
-  top: -6%;
-  bottom: -6%;
+  width: max(1100px, 112%);
+  aspect-ratio: 2400 / 1855;
   z-index: 0;
   /* The wormhole grid sweeps across the top of Projects at its natural shape (never stretched). */
-  background: url('../Images/Logos and Decals/gridbg-web.webp') right top / max(1100px, 112%) auto
-    no-repeat;
+  background: url('../Images/Logos and Decals/gridbg-web.webp') center / 100% 100% no-repeat;
   opacity: 0.32;
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(transparent, #000 3%);
-  mask-image: linear-gradient(transparent, #000 3%);
+  /* soft fade at the top and a longer one at the bottom, so the layer has no visible edge */
+  -webkit-mask-image: linear-gradient(transparent, #000 22%, #000 70%, transparent);
+  mask-image: linear-gradient(transparent, #000 22%, #000 70%, transparent);
+}
+@media (min-width: 1000px) {
+  /* the picture is taller here, so start it higher to keep the same part showing */
+  .projects__grid-bg {
+    top: -380px;
+  }
 }
 
 .groups {

@@ -400,49 +400,76 @@
     });
   }
 
-  /* ---------- Projects grid background parallax ---------- */
+  /* ---------- Projects grid background parallax ----------
+     A gentle drift of the wormhole grid as the Projects section passes. It only moves
+     while the section is near the screen, runs at most once per frame, and never reads
+     layout while scrolling: the section's position is measured on entry and on resize. */
   function setupGridBg() {
     var bg = $('.projects__grid-bg');
     if (!bg || REDUCED) return;
     var section = bg.closest('section') || bg.parentElement;
-    var vis = true,
-      ticking = false;
+    var visible = !HAS_IO;
+    var ticking = false;
+    var sectionTop = 0; // distance from the top of the document
+    var sectionHeight = 1;
+
+    function measure() {
+      var rect = section.getBoundingClientRect();
+      sectionTop = rect.top + window.pageYOffset;
+      sectionHeight = Math.max(rect.height, 1);
+    }
+
     function update() {
       ticking = false;
-      if (!vis) return;
-      var r = section.getBoundingClientRect();
+      if (!visible) return;
       var vh = window.innerHeight || 800;
-      var p = (vh / 2 - (r.top + r.height / 2)) / (r.height + vh); // about -0.5 .. 0.5
-      bg.style.translate = '0 ' + (p * 120).toFixed(1) + 'px';
+      var centreOnScreen = sectionTop + sectionHeight / 2 - window.pageYOffset;
+      var progress = (vh / 2 - centreOnScreen) / (sectionHeight + vh); // about -0.5 .. 0.5
+      bg.style.translate = '0 ' + (progress * 120).toFixed(1) + 'px';
     }
-    function req() {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(update);
-      }
+
+    function requestUpdate() {
+      if (ticking || !visible) return;
+      ticking = true;
+      requestAnimationFrame(update);
     }
+
+    function onResize() {
+      measure();
+      requestUpdate();
+    }
+
     if (HAS_IO) {
       new IntersectionObserver(
-        function (en) {
-          vis = en[0].isIntersecting;
-          bg.classList.toggle('is-paused', !vis);
-          if (vis) req();
+        function (entries) {
+          visible = entries[0].isIntersecting;
+          bg.classList.toggle('is-paused', !visible);
+          if (visible) onResize();
         },
         { rootMargin: '100px' },
       ).observe(section);
     }
-    window.addEventListener('scroll', req, { passive: true });
-    window.addEventListener('resize', req, { passive: true });
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', onResize, { passive: true });
+    measure();
     update();
   }
 
   /* ---------- Flight-path trail ----------
      A dotted line that starts on one of the hero's orbit rings and winds down the page,
-     passing a small star or planet at every section heading. It sits behind the content
-     and is revealed progressively as you scroll. It is rebuilt whenever the page's height
-     changes (images loading, fonts arriving, window resizes), so it always lines up with
-     the real headings. With reduced motion it is shown fully drawn and does not animate. */
+     passing a small star or planet at every section heading. It sits behind the content.
+
+     It is built as many small SVGs, one per hop between two neighbouring points, each
+     sized to its own bounding box. Nothing here runs while the visitor scrolls: a hop is
+     revealed once, by a CSS transition, the first time it comes into view, and its end
+     mark lights up when that transition finishes. The wipe only moves two pre-drawn layers,
+     so it needs no repainting. (A single page-tall SVG, redrawn on every scroll frame,
+     was what made the page stutter.) The trail is rebuilt only when
+     the page's size really changes (images loading, fonts arriving, window resizes).
+     With reduced motion every hop is shown at once and every mark is lit. */
   var SVG_NS = 'http://www.w3.org/2000/svg';
+  var TRAIL_PAD = 28; // room around a hop for the line's stroke and the mark at its end
+  var TRAIL_REVEAL_MS = 1400; // keep in step with the clip-path transition in motion.css
 
   function svgEl(name, attrs) {
     var el = document.createElementNS(SVG_NS, name);
@@ -465,51 +492,105 @@
     return { x: x, y: y };
   }
 
-  /** Smooth path through points that always travel downwards: each hop is an S-curve. */
-  function trailPathData(points) {
-    var d = 'M' + points[0].x.toFixed(1) + ' ' + points[0].y.toFixed(1);
-    for (var i = 1; i < points.length; i++) {
-      var a = points[i - 1];
-      var b = points[i];
-      var rise = (b.y - a.y) * 0.55;
-      var lean = (b.x - a.x) * 0.12;
-      d +=
-        ' C' +
-        (a.x + lean).toFixed(1) +
-        ' ' +
-        (a.y + rise).toFixed(1) +
-        ' ' +
-        (b.x - lean).toFixed(1) +
-        ' ' +
-        (b.y - rise).toFixed(1) +
-        ' ' +
-        b.x.toFixed(1) +
-        ' ' +
-        b.y.toFixed(1);
+  /** The two control points of the S-curve that joins `a` to `b` (a hop always travels downwards). */
+  function hopControls(a, b) {
+    var rise = (b.y - a.y) * 0.55;
+    var lean = (b.x - a.x) * 0.12;
+    return [
+      { x: a.x + lean, y: a.y + rise },
+      { x: b.x - lean, y: b.y - rise },
+    ];
+  }
+
+  /** Path data for one hop, with every point shifted by (-originX, -originY). */
+  function hopPathData(a, b, originX, originY) {
+    var c = hopControls(a, b);
+    var pts = [a, c[0], c[1], b].map(function (p) {
+      return (p.x - originX).toFixed(1) + ' ' + (p.y - originY).toFixed(1);
+    });
+    return 'M' + pts[0] + ' C' + pts[1] + ' ' + pts[2] + ' ' + pts[3];
+  }
+
+  /** A small star or ringed planet centred on `point` (in the hop's own coordinates). */
+  function trailMark(kind, point) {
+    var g = svgEl('g', { class: 'trail__mark' });
+    if (kind === 'planet') {
+      g.appendChild(
+        svgEl('circle', { cx: point.x, cy: point.y, r: 5, class: 'trail__planet-core' }),
+      );
+      g.appendChild(
+        svgEl('ellipse', {
+          cx: point.x,
+          cy: point.y,
+          rx: 13,
+          ry: 4.5,
+          transform: 'rotate(-24 ' + point.x + ' ' + point.y + ')',
+        }),
+      );
+    } else {
+      var size = 26;
+      g.appendChild(
+        svgEl('use', {
+          href: '#star-doodle',
+          x: point.x - size / 2,
+          y: point.y - size / 2,
+          width: size,
+          height: size,
+        }),
+      );
     }
-    return d;
+    return g;
+  }
+
+  /** One hop as an absolutely positioned wrapper holding a small SVG. `kind` is the mark at `b`, if any. */
+  function buildHop(a, b, kind) {
+    var c = hopControls(a, b);
+    var xs = [a.x, b.x, c[0].x, c[1].x];
+    var left = Math.floor(Math.min.apply(null, xs)) - TRAIL_PAD;
+    var right = Math.ceil(Math.max.apply(null, xs)) + TRAIL_PAD;
+    var top = Math.floor(a.y) - TRAIL_PAD;
+    var bottom = Math.ceil(b.y) + TRAIL_PAD;
+    var width = right - left;
+    var height = bottom - top;
+
+    var wrap = document.createElement('div');
+    wrap.className = 'trail__hop';
+    wrap.style.left = left + 'px';
+    wrap.style.top = top + 'px';
+    wrap.style.width = width + 'px';
+    wrap.style.height = height + 'px';
+
+    var svg = svgEl('svg', {
+      class: 'trail__draw',
+      width: width,
+      height: height,
+      viewBox: '0 0 ' + width + ' ' + height,
+      'aria-hidden': 'true',
+      focusable: 'false',
+    });
+    svg.appendChild(svgEl('path', { class: 'trail__dots', d: hopPathData(a, b, left, top) }));
+    if (kind) svg.appendChild(trailMark(kind, { x: b.x - left, y: b.y - top }));
+    // The slide and the SVG are moved in opposite directions to wipe the line in (see motion.css)
+    var slide = document.createElement('div');
+    slide.className = 'trail__slide';
+    slide.appendChild(svg);
+    wrap.appendChild(slide);
+    return wrap;
   }
 
   function setupTrail() {
     var page = $('.page');
     if (!page || !$('.section__title', page)) return;
 
-    // Static pieces, created once
-    var svg = svgEl('svg', { class: 'trail', 'aria-hidden': 'true', focusable: 'false' });
-    var defs = svgEl('defs');
-    var mask = svgEl('mask', { id: 'trail-mask', maskUnits: 'userSpaceOnUse' });
-    var reveal = svgEl('path', { class: 'trail__reveal' });
-    var dots = svgEl('path', { class: 'trail__dots', mask: 'url(#trail-mask)' });
-    var marks = svgEl('g');
-    var head = svgEl('circle', { class: 'trail__head', r: 4.5 });
-    mask.appendChild(reveal);
-    defs.appendChild(mask);
-    [defs, dots, marks, head].forEach(function (node) {
-      svg.appendChild(node);
-    });
-    page.insertBefore(svg, page.firstChild);
+    var layer = document.createElement('div');
+    layer.className = 'trail';
+    layer.setAttribute('aria-hidden', 'true');
+    page.insertBefore(layer, page.firstChild);
 
-    var state = { total: 0, samples: [], marks: [], shown: 0, goal: 0, pageTop: 0, raf: 0 };
+    var animate = !REDUCED && HAS_IO;
+    var revealedCount = 0; // hops already shown, so a rebuild doesn't hide or replay them
+    var observer = null;
+    var built = { width: 0, height: 0 };
 
     /** Where the trail begins: on the hero's fourth ring, or just above the first heading. */
     function startPoint(titles, laneRight) {
@@ -600,149 +681,93 @@
       return { points: keptPoints, kinds: keptKinds };
     }
 
-    /** Index of the last sample whose y is at or above `y` (samples run top to bottom). */
-    function lengthAtY(y) {
-      var samples = state.samples;
-      var lo = 0;
-      var hi = samples.length - 1;
-      while (lo < hi) {
-        var mid = (lo + hi + 1) >> 1;
-        if (samples[mid].y <= y) lo = mid;
-        else hi = mid - 1;
+    /** Show a hop. `instant` skips the transition (hops already passed, reduced motion). */
+    function revealHop(hop, instant) {
+      if (hop.classList.contains('is-in')) return;
+      var slide = hop.firstChild;
+      var lit = false;
+      function light() {
+        if (lit) return;
+        lit = true;
+        hop.classList.add('is-lit');
       }
-      return samples[lo].len;
+      if (instant) {
+        hop.classList.add('is-in', 'is-lit', 'is-instant');
+        return;
+      }
+      slide.addEventListener('transitionend', function (ev) {
+        if (ev.target === slide) light();
+      });
+      setTimeout(light, TRAIL_REVEAL_MS + 200); // in case the event never arrives
+      hop.classList.add('is-in');
     }
 
-    function markShape(kind, point) {
-      var g = svgEl('g', { class: 'trail__mark' });
-      if (kind === 'planet') {
-        g.appendChild(
-          svgEl('circle', { cx: point.x, cy: point.y, r: 5, class: 'trail__planet-core' }),
-        );
-        g.appendChild(
-          svgEl('ellipse', {
-            cx: point.x,
-            cy: point.y,
-            rx: 13,
-            ry: 4.5,
-            transform: 'rotate(-24 ' + point.x + ' ' + point.y + ')',
-          }),
-        );
-      } else {
-        var size = 26;
-        g.appendChild(
-          svgEl('use', {
-            href: '#star-doodle',
-            x: point.x - size / 2,
-            y: point.y - size / 2,
-            width: size,
-            height: size,
-          }),
-        );
+    function watchHops(hops) {
+      if (observer) observer.disconnect();
+      observer = null;
+      if (!animate) {
+        hops.forEach(function (hop) {
+          revealHop(hop, true);
+        });
+        return;
       }
-      return g;
+      hops.forEach(function (hop, i) {
+        if (i < revealedCount) revealHop(hop, true);
+      });
+      observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (en) {
+            var above = !en.isIntersecting && en.boundingClientRect.top < 0;
+            if (!en.isIntersecting && !above) return;
+            observer.unobserve(en.target);
+            // Hops scrolled past before they were ever seen (jumps, anchors) just appear
+            revealHop(en.target, above);
+            revealedCount = Math.max(revealedCount, hops.indexOf(en.target) + 1);
+          });
+        },
+        { rootMargin: '0px 0px -22% 0px' },
+      );
+      hops.forEach(function (hop, i) {
+        if (i >= revealedCount) observer.observe(hop);
+      });
     }
 
     function layout() {
       var pageW = page.clientWidth;
       var pageH = page.offsetHeight;
+      built.width = pageW;
+      built.height = pageH;
       var plan = buildPoints(pageW, pageH);
-      if (!plan || plan.points.length < 2) {
-        svg.style.display = 'none';
-        return;
+
+      layer.textContent = '';
+      if (!plan || plan.points.length < 2) return;
+
+      var hops = [];
+      var frag = document.createDocumentFragment();
+      for (var i = 1; i < plan.points.length; i++) {
+        var hop = buildHop(plan.points[i - 1], plan.points[i], plan.kinds[i]);
+        hops.push(hop);
+        frag.appendChild(hop);
       }
-      svg.style.display = '';
-      svg.setAttribute('viewBox', '0 0 ' + pageW + ' ' + pageH);
-      svg.setAttribute('width', pageW);
-      svg.setAttribute('height', pageH);
-      svg.style.height = pageH + 'px';
-      mask.setAttribute('x', 0);
-      mask.setAttribute('y', 0);
-      mask.setAttribute('width', pageW);
-      mask.setAttribute('height', pageH);
-
-      var d = trailPathData(plan.points);
-      reveal.setAttribute('d', d);
-      dots.setAttribute('d', d);
-      state.total = reveal.getTotalLength();
-      reveal.style.strokeDasharray = state.total;
-
-      // Sample the curve so scroll position can be turned into "how much is drawn"
-      state.samples = [];
-      for (var len = 0; len <= state.total; len += 10) {
-        state.samples.push({ len: len, y: reveal.getPointAtLength(len).y });
-      }
-      state.samples.push({ len: state.total, y: reveal.getPointAtLength(state.total).y });
-
-      // Markers at the headings (and the closing star)
-      marks.textContent = '';
-      state.marks = [];
-      plan.points.forEach(function (point, i) {
-        if (!plan.kinds[i]) return;
-        var shape = markShape(plan.kinds[i], point);
-        marks.appendChild(shape);
-        state.marks.push({ el: shape, len: lengthAtY(point.y) });
-      });
-
-      state.pageTop = page.getBoundingClientRect().top + window.pageYOffset;
-      measureGoal();
-      state.shown = REDUCED ? state.total : state.goal;
-      paint();
+      layer.appendChild(frag);
+      watchHops(hops);
     }
 
-    /** How much of the trail should be drawn for the current scroll position. */
-    function measureGoal() {
-      if (REDUCED) {
-        state.goal = state.total;
-        return;
-      }
-      var viewportBottom = window.pageYOffset + (window.innerHeight || 800) * 0.68;
-      state.goal = lengthAtY(viewportBottom - state.pageTop);
-    }
-
-    function paint() {
-      reveal.style.strokeDashoffset = state.total - state.shown;
-      var tip = reveal.getPointAtLength(Math.min(state.shown, state.total));
-      head.setAttribute('cx', tip.x);
-      head.setAttribute('cy', tip.y);
-      head.style.display = state.shown <= 1 || state.shown >= state.total - 1 ? 'none' : '';
-      state.marks.forEach(function (m) {
-        m.el.classList.toggle('is-lit', REDUCED || state.shown >= m.len - 8);
-      });
-    }
-
-    // Ease towards the goal so the line glides rather than jumping with the scrollbar
-    function step() {
-      state.raf = 0;
-      var diff = state.goal - state.shown;
-      if (Math.abs(diff) < 0.6) {
-        state.shown = state.goal;
-      } else {
-        state.shown += diff * 0.14;
-        state.raf = requestAnimationFrame(step);
-      }
-      paint();
-    }
-
-    function onScroll() {
-      measureGoal();
-      if (!state.raf) state.raf = requestAnimationFrame(step);
+    /** Rebuild only when the page really changed size, and not more than a few times a second. */
+    var rebuildTimer = 0;
+    function scheduleRebuild() {
+      clearTimeout(rebuildTimer);
+      rebuildTimer = setTimeout(function () {
+        var widthChanged = page.clientWidth !== built.width;
+        var heightChanged = Math.abs(page.offsetHeight - built.height) > 4;
+        if (widthChanged || heightChanged) layout();
+      }, 250);
     }
 
     layout();
-
-    var pending = 0;
-    function relayout() {
-      if (pending) return;
-      pending = requestAnimationFrame(function () {
-        pending = 0;
-        layout();
-      });
-    }
-    if ('ResizeObserver' in window) new ResizeObserver(relayout).observe(page);
-    window.addEventListener('resize', relayout, { passive: true });
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
-    if (!REDUCED) window.addEventListener('scroll', onScroll, { passive: true });
+    if ('ResizeObserver' in window) new ResizeObserver(scheduleRebuild).observe(page);
+    else window.addEventListener('resize', scheduleRebuild, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleRebuild);
   }
 
   /* ---------- Subtle card tilt ---------- */

@@ -44,7 +44,9 @@
   }
 
   function buildStars() {
-    var count = Math.round(Math.min(220, Math.max(120, (W * H) / 9000)));
+    // Fewer stars on phones: they cover the same sky with less to draw every frame
+    var fewest = W < 600 ? 70 : 120;
+    var count = Math.round(Math.min(220, Math.max(fewest, (W * H) / 9000)));
     stars = [];
     for (var i = 0; i < count; i++) {
       var d = i % 10 < 5 ? 0 : i % 10 < 8 ? 1 : 2; // more far stars than near
@@ -66,7 +68,7 @@
   function resize() {
     W = window.innerWidth;
     H = window.innerHeight;
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5); // stars are tiny; sharper than this is not visible
     canvas.width = Math.round(W * dpr);
     canvas.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
