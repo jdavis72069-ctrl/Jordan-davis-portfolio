@@ -35,7 +35,7 @@ Medium: Watercolor
 Year: 2025
 
 # Optional: a short caption. Type it below the blank line above. Leave blank to hide it.
-I painted this tiered fountain in loose washes, with golden basins set against dark cypress trees and a soft blue sky.
+A study of John Singer Sargent's In a Medici Villa for a watercolor class.
 
 ---
 
@@ -44,13 +44,11 @@ I painted this tiered fountain in loose washes, with golden basins set against d
 
 Image: Images/Art/MechaPainting-web.jpg
 Image Alt: Digital character sheet showing a pilot sketch, a line drawing of her mech suit, and the colored final design
-Title: Pilot and Suit
+Title: Original Character Design 
 Medium: Digital illustration
 #
 # NOTE FOR JORDAN: add the year this piece was made after "Year:".
-Year:
-
-Sketch, line drawing and final color for one character. Working out how the suit's panels and joints fit together is the same kind of puzzle I enjoy in mechanical design.
+Year: 2025
 
 ---
 
@@ -60,4 +58,3 @@ Title: Blue Trees
 Medium: Watercolor
 Year: 2026
 
-A stand of tall, thin trees with blue-violet trunks and loose clumps of green and ochre leaves, above a violet roof dappled with leaf shadows.
