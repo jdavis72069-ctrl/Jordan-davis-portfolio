@@ -22,4 +22,4 @@ Cover: Images/Books/cfdbook.jpg
 # BELOW THE BLANK LINE: Jordan's short note about the book, written in first person (one or two sentences is ideal).
 # Leave everything below the blank line empty to hide the note.
 
-It's a classic introduction to the equations behind fluid flow, how to discretize them, finite-difference methods and grid generation. I'm reading it for background on the hull optimization I run in Ansys Fluent for DIVA, the manta-ray glider in my senior capstone.
+This book has helped me develop a foundation in the math behind CFD and how to apply it to It's a classic introduction to the equations behind fluid flow, how to discretize them, finite-difference methods and grid generation. I'm reading it for background on the hull optimization I run in Ansys Fluent for DIVA, the manta-ray glider in my senior capstone.
